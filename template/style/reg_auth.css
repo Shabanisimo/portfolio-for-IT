@@ -1,0 +1,92 @@
+html, body{
+    height: 100%;
+    box-sizing: border-box;
+    font-family: "Roboto", Verdana, Geneva, Tahoma, sans-serif;
+}
+  
+body{
+    margin: 0;
+    min-width: 320px;
+}
+
+.wrapper{
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.header{
+    position: relative;
+    padding: 30px 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+  
+    color: #fff;
+    background-color: #438ccb;
+    box-shadow: 0 2px 5px rgba(0,0,0, 0.25);
+}
+
+.reg-auth-container{
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;  
+}
+
+.reg-auth-block{
+    padding: 15px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.reg-auth__title{
+    font-size: 34px;
+}
+
+.reg-auth__list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.reg-auth__item{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.reg-auth__item label{
+    font-size: 20px;
+}
+
+.reg-auth__item input{
+    margin-top: 10px;
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    border: 1px solid #438ccb;
+    border-radius: 5px;
+    text-indent: 10px;
+}
+
+.reg-auth__item button{
+    width: 320px;
+    margin: 0 auto;
+    padding: 16px 0;
+    border-radius: 5px;
+    display: block;
+    border: none;
+    background-color: #438ccb;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.reg-auth__item button:focus, .reg-auth__item button:hover{
+    background-color: #0A89A7;
+}

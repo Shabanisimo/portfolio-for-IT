@@ -99,7 +99,6 @@
         }
 
         public static function authorisation($userId){
-            session_start();
             $_SESSION['user'] = $userId;
         }
 
@@ -122,6 +121,24 @@
             
             return false;
 
+        }
+
+        public static function isGuest(){
+
+            if (isset($_SESSION['user'])){
+                return false;
+            }
+
+            return true;
+        }
+
+        public static function checkLogged(){
+
+            if (isset($_SESSION['user'])){
+                return $_SESSION['user'];
+            }
+
+            header("Location: /authorisation");
         }
 
         public static function getUserProjectsById($id){
@@ -149,6 +166,23 @@
                 }
 
                 return $userProjectList;
+            }
+        }
+
+        public static function findUserNameById($id){
+            $id = intval($id);
+
+            if($id)
+            {
+                $db = DB::getConection();
+
+                $result = $db->query('SELECT name, surname FROM users WHERE id='.$id);
+                $result->setFetchMode(PDO::FETCH_ASSOC);
+    
+                $user = $result->fetch();
+                    
+                return $user;
+                
             }
         }
 

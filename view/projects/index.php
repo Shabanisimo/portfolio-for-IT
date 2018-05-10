@@ -16,4 +16,5 @@
         </div>
     <?php endforeach;?>
 </main>
+    <?php echo $pagination->get(); ?>
 <?php include ROOT.'\view\layouts\footer.php';?>

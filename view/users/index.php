@@ -48,11 +48,11 @@
                     <label class="uk-form-label" for="textarea_description">Description</label>
                     <textarea name="description" class="uk-input" id="textarea_description"></textarea>
                 </div>
-            </form>   
-            <div class="uk-modal-footer uk-text-right">
-                <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-                <button class="uk-button uk-button-primary" type="button">Save</button>                    
-            </div>     
+                <div class="uk-modal-footer uk-text-right">
+                    <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                    <button class="uk-button uk-button-primary" type="button">Save</button>                    
+                </div>    
+            </form>    
         </div>
     </div> 
 <?php include ROOT.'/view/layouts/footer.php'; ?>

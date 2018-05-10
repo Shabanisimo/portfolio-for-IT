@@ -35,7 +35,7 @@
                         <input type="text" name="telephone" class="uk-input" value="<?php echo $telephone; ?>">
                     </li>
                     <li class="reg-auth__item">
-                        <button type="submit" name="signup">
+                        <button type="submit" class="uk-button uk-button-primary reg-auth__button" name="signup">
                             Registration
                         </button>
                     </li>

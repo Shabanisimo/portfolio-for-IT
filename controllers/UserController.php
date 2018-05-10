@@ -69,9 +69,10 @@
                 $userId = User::checkUserData($login, $password);
 
                 if ($userId == false){
-                    $errors[] = 'Неправильный логин или пароль!';
+                    $errors = 'Неправильный логин или пароль!';
                 }else{
                     User::authorisation($userId);
+                    $errors = '';
 
                     header("Location: /users/".$userId);
                 }
@@ -81,6 +82,12 @@
             require_once(ROOT.'/view/authorisation/authorisation.php');
 
             return true;
+        }
+
+        public function actionLogout(){
+            session_start();
+            unset($_SESSION["user"]);
+            header("Location: /authorisation");
         }
 
         public function actionList(){
@@ -100,5 +107,6 @@
 
             return true;
         }
+
     }
 ?>

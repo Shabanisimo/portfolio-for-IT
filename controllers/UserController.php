@@ -102,7 +102,7 @@
         public function actionView($id){
             $userItem = User::getUserItemById($id);
             $userProjectList = User::getUserProjectsById($id);
-
+            $userAccount = User::checkUserAccount($id);
             require_once(ROOT.'/view/users/index.php');
 
             return true;

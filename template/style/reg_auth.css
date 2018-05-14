@@ -9,6 +9,11 @@ body{
     min-width: 320px;
 }
 
+.reg-block{
+    max-width: 600px;
+    width: 100%;
+}
+
 .wrapper{
     min-height: 100%;
     display: flex;
@@ -22,6 +27,7 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;  
+    padding-top: 20px;
 }
 
 .reg-auth-block{

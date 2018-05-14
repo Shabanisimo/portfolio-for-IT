@@ -7,40 +7,80 @@
                     <?php endforeach; ?>
                 </ul>
             <?php endif; ?>
-            <form class="reg-auth-block" action="#" method="POST">
-                <h2 class="reg-auth__title">Registartion</h2>
-                <ul class="reg-auth__list">
-                    <li class="reg-auth__item">
-                        <label>Login</label>
-                        <input type="text" name="login" class="uk-input" value="<?php echo $login; ?>">
-                    </li>
-                    <li class="reg-auth__item">
-                        <label>Password</label>
-                        <input type="password" name="password" class="uk-input" value="<?php echo $password; ?>">
-                    </li>
-                    <li class="reg-auth__item">
-                        <label>Name</label>
-                        <input type="text" name="name" class="uk-input" value="<?php echo $name; ?>">
-                    </li>
-                    <li class="reg-auth__item">
-                        <label>Surname</label>
-                        <input type="text" name="surname" class="uk-input" value="<?php echo $surname; ?>">
-                    </li>
-                    <li class="reg-auth__item">
-                        <label>Email</label>
-                        <input type="email" name="email" class="uk-input" value="<?php echo $email; ?>">
-                    </li>
-                    <li class="reg-auth__item">
-                        <label>Telephone</label>
-                        <input type="text" name="telephone" class="uk-input" value="<?php echo $telephone; ?>">
-                    </li>
-                    <li class="reg-auth__item">
-                        <button type="submit" class="uk-button uk-button-primary reg-auth__button" name="signup">
-                            Registration
-                        </button>
-                    </li>
-                </ul>
-            </form>
+            <ul uk-tab uk-switcher="animation: uk-animation-fade">
+                <li><a href="#">User</a></li>
+                <li><a href="#">Company</a></li>
+            </ul>
+            <ul  class="uk-switcher uk-margin reg-block">
+                <li>
+                    <form class="reg-auth-block" action="#" method="POST">
+                        <h2 class="reg-auth__title">Registartion</h2>
+                        <ul class="reg-auth__list">
+                            <li class="reg-auth__item">
+                                <label>Login</label>
+                                <input type="text" name="login" class="uk-input" value="<?php echo $login; ?>">
+                            </li>
+                            <li class="reg-auth__item">
+                                <label>Password</label>
+                                <input type="password" name="password" class="uk-input" value="<?php echo $password; ?>">
+                            </li>
+                            <li class="reg-auth__item">
+                                <label>Name</label>
+                                <input type="text" name="name" class="uk-input" value="<?php echo $name; ?>">
+                            </li>
+                            <li class="reg-auth__item">
+                                <label>Surname</label>
+                                <input type="text" name="surname" class="uk-input" value="<?php echo $surname; ?>">
+                            </li>
+                            <li class="reg-auth__item">
+                                <label>Email</label>
+                                <input type="email" name="email" class="uk-input" value="<?php echo $email; ?>">
+                            </li>
+                            <li class="reg-auth__item">
+                                <label>Telephone</label>
+                                <input type="text" name="telephone" class="uk-input" value="<?php echo $telephone; ?>">
+                            </li>
+                            <li class="reg-auth__item">
+                                <button type="submit" class="uk-button uk-button-primary reg-auth__button" name="signup">
+                                    Registration
+                                </button>
+                            </li>
+                        </ul>
+                    </form>
+                </li>
+                <li>
+                    <form class="reg-auth-block" action="#" method="POST">
+                        <h2 class="reg-auth__title">Registartion</h2>
+                        <ul class="reg-auth__list">
+                            <li class="reg-auth__item">
+                                <label>Login</label>
+                                <input type="text" name="login" class="uk-input" value="<?php echo $login; ?>">
+                            </li>
+                            <li class="reg-auth__item">
+                                <label>Password</label>
+                                <input type="password" name="password" class="uk-input" value="<?php echo $password; ?>">
+                            </li>
+                            <li class="reg-auth__item">
+                                <label>Title</label>
+                                <input type="text" name="tile" class="uk-input" value="<?php echo $title; ?>">
+                            </li>
+                            <li class="reg-auth__item">
+                                <label>Website</label>
+                                <input type="email" name="website" class="uk-input" value="<?php echo $website; ?>">
+                            </li>
+                            <li class="reg-auth__item">
+                                <label>Telephone</label>
+                                <input type="text" name="telephone" class="uk-input" value="<?php echo $telephone; ?>">
+                            </li>
+                            <li class="reg-auth__item">
+                                <button type="submit" class="uk-button uk-button-primary reg-auth__button" name="companysignup">
+                                    Registration
+                                </button>
+                            </li>
+                        </ul>
+                    </form>
+                </li>
+            </ul>
         </main>
     </div>
     <?php include ROOT.'\view\layouts\footer.php';?>

@@ -14,6 +14,7 @@
             $result->bindParam(':email', $email, PDO::PARAM_STR);
             $result->bindParam(':telephone', $telephone, PDO::PARAM_STR);
             $result->bindParam(':about', $about, PDO::PARAM_STR);
+
             $result->execute();
         }
 

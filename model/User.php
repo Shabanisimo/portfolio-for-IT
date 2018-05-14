@@ -76,7 +76,6 @@
         }
 
         public static function checkTelephone($telephone){
-            $db = DB::getConection();
 
             
         }
@@ -186,9 +185,19 @@
             }
         }
 
-        public static function getUserList(){
-            
+        public static function checkUserAccount($id){
+            if (!User::isGuest()){
+                if ($id == $_SESSION['user']){
+                    return true;
+                } else{
+                    return false;
+                }
+            }else {
+                return false;
+            }
         }
+
+
     }
 
 ?>

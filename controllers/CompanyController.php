@@ -1,6 +1,6 @@
 <?php
 
-    class ProjectController{
+    class CompanyController{
 
         public function actionList($page = 1){
 
@@ -18,15 +18,9 @@
         }
 
         public function actionView($id){
-            $projectItem = Project::getProjectItemById($id);
-            $commentList = Project::getCommentsListById($id);
+            $projectItem = Company::getCompanyItemById($id);
 
-            require_once(ROOT.'/view/projects/view.php');
-
-            if (isset($_POST['comment']) ){
-                $comment = $_POST['comment-text'];
-                    Project::CommentProject($id, $comment);
-            }
+            require_once(ROOT.'/view/companies/view.php');
 
             return true;
         }

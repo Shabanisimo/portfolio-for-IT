@@ -1,5 +1,6 @@
 <?php include ROOT.'\view\layouts\header.php';?>
-<main class="projects-list">
+<main>
+    <div class="projects-list">
     <?php foreach ($projectList as $projectItem):?>
         <div class="uk-card uk-card-default">
             <div class="uk-card-media-top">
@@ -15,6 +16,9 @@
             </div>
         </div>
     <?php endforeach;?>
-</main>
+</div>
+<div>
     <?php echo $pagination->get(); ?>
+</div>
+</main>
 <?php include ROOT.'\view\layouts\footer.php';?>

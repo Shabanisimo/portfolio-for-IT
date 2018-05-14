@@ -1,7 +1,7 @@
 <?php include ROOT.'\view\layouts\header.php';?>
     <main class="settings-container">
         <section>
-            <form class="uk-form-width-large uk-margin-top uk-margin-left" method="POST">
+            <form class="uk-form-width-large uk-margin-top uk-margin-left" method="POST" cation="">
                 <label class="uk-lable" for="name">Name</label>
                 <input class="uk-input uk-margin-bottom" name="name" id="name" value="<?php echo $name;  ?>"></input>
                 <label class="uk-lable" for="surname">Surname</label>

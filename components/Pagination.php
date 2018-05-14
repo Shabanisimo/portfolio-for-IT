@@ -42,7 +42,7 @@
 
             $limits = $this->limits();
 
-            $html = '<ul class="uk-pagination  uk-margin">';
+            $html = '<ul class="uk-pagination uk-flex-center  uk-margin">';
 
             for($page = $limits[0]; $page<=$limits[1]; $page++)
             {

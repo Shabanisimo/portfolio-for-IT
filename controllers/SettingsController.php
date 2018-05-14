@@ -17,11 +17,11 @@
             $result = false;
 
             if(isset($_POST['edit'])){
-                $name = $user['name'];
-                $surname = $user['surname'];
-                $email = $user['email'];
-                $telephone = $user['telephone'];
-                $about = $user['about'];
+                $name = $_POST['name'];
+                $surname = $_POST['surname'];
+                $email = $_POST['email'];
+                $telephone = $_POST['telephone'];
+                $about = $_POST['about'];
 
                 $errors = false;
 

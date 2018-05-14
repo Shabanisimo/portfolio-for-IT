@@ -16,50 +16,50 @@
     <title></title>
 </head>
 <body>
-    <header class="header">
-        <button type="button" class="header__burger burger" data-menu-btn>
-            <span class="burger__line burger__line--first"></span>
-            <span class="burger__line burger__line--second"></span>
-            <span class="burger__line burger__line--third"></span>
-        </button>
-        <nav class="menu" data-menu>
-            <div class="menu__content">
-                <div class="menu__header">
+    <header class="header" uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+        <nav class="uk-navbar uk-navbar-container uk-margin" data-menu>
+            <div class="uk-navbar-left">
+                <a class="uk-navbar-toggle" uk-navbar-toggle-icon  uk-toggle href="#offcanvas-slide"></a>
+                <h3 class="uk-margin-small-left"><a href="#">IT-portfolio</a></h3>
+            </div>
+            
+        <div id="offcanvas-slide" class="menu" uk-offcanvas="flip: true; mode: reveal;">
+                <div class="uk-offcanvas-bar" >
                     <div class="menu__photo">
                         <img src="/template/img/photo.svg" alt="Аватар" class="menu__img">
                     </div>
                     <div class="menu__title"></div>
+                    <ul class="uk-nav uk-nav-default">
+                        <?php if (!User::isGuest()) :?>
+                            <li class="menu__item menu__item--mainpage">
+                                <a href="/users/<?php echo $_SESSION['user']; ?>" class="menu__link">User profile</a>
+                            </li>
+                        <?php endif;?>
+                        <li class="menu__item menu__item--projects">
+                            <a href="/projects" class="menu__link">Projects</a>
+                        </li>
+                        <?php if (User::isGuest()) :?>
+                            <li class="menu__item menu__item--projects">
+                                <a href="/registration" class="menu__link">Registration</a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if (User::isGuest()) :?>
+                            <li class="menu__item menu__item--projects">
+                                <a href="/authorisation" class="menu__link">Authorisation</a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if (!User::isGuest()) :?>
+                            <li class="menu__item menu__item--settings">
+                                <a href="/settings" class="menu__link">Settings</a>
+                            </li>
+                        <?php endif; ?>    
+                        <?php if (!User::isGuest()) :?>    
+                            <li class="menu__item menu__item--exit">
+                                <a href="/logout" class="menu__link">Exit</a>
+                            </li>
+                        <?php endif; ?>
+                    </ul>
                 </div>
-                <ul class="menu__list">
-                    <?php if (!User::isGuest()) :?>
-                        <li class="menu__item menu__item--mainpage">
-                            <a href="/users/<?php echo $userId;  ?>" class="menu__link">User profile</a>
-                        </li>
-                    <?php endif;?>
-                    <li class="menu__item menu__item--projects">
-                        <a href="/projects" class="menu__link">Projects</a>
-                    </li>
-                    <?php if (User::isGuest()) :?>
-                        <li class="menu__item menu__item--projects">
-                            <a href="/registration" class="menu__link">Registration</a>
-                        </li>
-                    <?php endif; ?>
-                    <?php if (User::isGuest()) :?>
-                        <li class="menu__item menu__item--projects">
-                            <a href="/authorisation" class="menu__link">Authorisation</a>
-                        </li>
-                    <?php endif; ?>
-                    <?php if (!User::isGuest()) :?>
-                        <li class="menu__item menu__item--settings">
-                            <a href="/settings" class="menu__link">Settings</a>
-                        </li>
-                    <?php endif; ?>    
-                    <?php if (!User::isGuest()) :?>    
-                        <li class="menu__item menu__item--exit">
-                            <a href="/logout" class="menu__link">Exit</a>
-                        </li>
-                    <?php endif; ?>
-                </ul>
             </div>
             <script src="/template/lib/jquery-3.3.1.min.js"></script>
             <div class="menu__aside" data-menu-aside></div>

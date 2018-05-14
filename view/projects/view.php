@@ -4,13 +4,21 @@
         <img class="project--header_img" src="/template/img/shopaholic.png">
     </section>
     <section class="project--info">
-        <time><?php echo $projectItem['Date']; ?></time>
-        <p><?php echo $projectItem['User_id']; ?></p>
+        <div class="uk-flex">
+            <date class=" uk-margin-right"><?php echo $projectItem['Date']; ?></date> 
+            <p class="uk-margin-remove">by <a href="/users/<?php echo $projectItem['User_id'] ?>"><?php echo $projectItem['name'].' '.$projectItem['surname']; ?></a></p>
+        </div>
         <h1><?php echo $projectItem['Title']; ?></h1>
         <p><?php echo $projectItem['Description']; ?></p>
         <a></a>
     </section>
     <section>
+    <?php if(!User::isGuest()) : ?>
+        <form action="" method="POST" class="">
+            <textarea class="" name="comment-text"></textarea>
+            <button class="uk-button uk-button-primary" type="submit" name="comment">Comment</button>
+        </form>
+    <?php endif; ?>
     <?php foreach($commentList as $commentItem):?>
     <article class="uk-comment uk-comment-primary uk-margin-bottom">
         <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>

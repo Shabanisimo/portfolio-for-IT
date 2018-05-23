@@ -13,7 +13,7 @@
             $pagination = new Pagination($total, $page, Project::SHOW_BY_DEFAULT, 'page-');
             
             require_once(ROOT.'/view/projects/index.php');
-
+            
             return true;
         }
 

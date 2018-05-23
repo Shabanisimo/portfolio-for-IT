@@ -4,24 +4,22 @@
 
         public static function registration($login, $password, $name, $surname, $email, $telephone){
 
-            $db = DB::getConection();
+            require_once ROOT."/components/db.php";
 
-            $sql = 'INSERT INTO users (login, password, name, surname, email, telephone, type) '
-                    . 'VALUES (:login, :password, :name, :surname, :email, :telephone, :type)';
+            $new_user = R::dispense("users");
 
             $password = md5($password);
             $type = 1;
 
-            $result = $db->prepare($sql);
-            $result->bindParam(':login', $login, PDO::PARAM_STR);
-            $result->bindParam(':password', $password, PDO::PARAM_STR);
-            $result->bindParam(':name', $name, PDO::PARAM_STR);
-            $result->bindParam(':surname', $surname, PDO::PARAM_STR);
-            $result->bindParam(':email', $email, PDO::PARAM_STR);
-            $result->bindParam(':telephone', $telephone, PDO::PARAM_STR);
-            $result->bindParam(':type', $type, PDO::PARAM_STR);
+            $new_user->login = $login;
+            $new_user->password = $password;
+            $new_user->name = $name;
+            $new_user->surname = $surname;
+            $new_user->email = $email;
+            $new_user->telephone = $telephone;
+            $new_user->type = $type;
 
-            return $result->execute();
+            R::store($new_user);
         }
 
         public static function checkLogin($login){
@@ -61,23 +59,14 @@
 
         public static function checkEmailExists($email){
 
-            $db = DB::getConection();
+            require_once ROOT."/components/db.php";
             
-            $sql = 'SELECT COUNT(*) FROM users WHERE email = :email';
+            $result = R::count("users", "email = ?", array($email));            
 
-            $result = $db->prepare($sql);
-            $result->bindParam(':email', $email, PDO::PARAM_STR);
-            $result->execute();
-
-            if($result->fetchColumn())
+            if($result)
                 return true;
             return false;
 
-        }
-
-        public static function checkTelephone($telephone){
-
-            
         }
 
         public static function getUserItemById($id){
@@ -85,13 +74,19 @@
 
             if ($id){
 
-                $db = DB::getConection();
+                require_once ROOT."/components/db.php";
 
-                $result = $db->query('SELECT id, name, surname, email, telephone, type, about '
-                        . 'FROM users '
-                       . 'WHERE id='.$id);
+                $result = R::find("users", "id = ?", array($id));
+                
+                $i=0;
 
-                $userItem = $result->fetch();
+                foreach($result as $row){
+                    $userItem['name'] = $row->name;
+                    $userItem['surname'] = $row->surname;
+                    $userItem['email'] = $row->email;
+                    $userItem['telephone'] = $row->telephone;
+                    $userItem['about'] = $row->about;
+                }
 
                 return $userItem;
             }
@@ -102,24 +97,24 @@
         }
 
         public static function checkUserData($login, $password){
-            $db = DB::getConection();
-
-            $password = md5($password);
-
-            $sql = 'SELECT * FROM users WHERE login = :login AND password = :password';
-
-            $result = $db->prepare($sql);
-            $result->bindParam(':login', $login, PDO::PARAM_INT);
-            $result->bindParam(':password', $password, PDO::PARAM_INT);
-            $result->execute();
-
-            $user = $result->fetch();
-            if($user){
-                return $user['id'];
-            }
             
-            return false;
+            require_once ROOT."/components/db.php";
+            $password = md5($password);
+            $result = R::find('users','login = ? AND password = ?',array($login,$password));
 
+            $i=0;
+
+            $user = array();
+
+            foreach($result as $item){
+                $user['id'] = $item->id;
+                print_r ($item->id);
+            }
+
+            if($result){
+                print_r($user['id']);
+                return $user['id'];
+            }else{return false;}
         }
 
         public static function isGuest(){
@@ -146,25 +141,25 @@
             if($id){
                 $userProjectList = array();
 
-                $db = DB::getConection();
+                require_once ROOT."/components/db.php";
 
-                $result = $db->query('SELECT id, User_id, Title, Date, Language, Description, Likes '
-                        . 'FROM projects '
-                        . 'WHERE User_id='.$id);
+                $result = R::find("projects", "user_id = ?", array($id));
+                
+                $i=0;
 
-                $i = 0;
-                while($row = $result->fetch() ){
-                    $userProjectList[$i]['id'] = $row['id'];
-                    $userProjectList[$i]['User_id'] = $row['User_id'];
-                    $userProjectList[$i]['Title'] = $row['Title'];
-                    $userProjectList[$i]['Date'] = $row['Date'];
-                    $userProjectList[$i]['Language'] = $row['Language'];
-                    $userProjectList[$i]['Description'] = $row['Description'];
-                    $userProjectList[$i]['Likes'] = $row['Likes'];
-                    $i++;
+                if(!$userProjectList){
+                    foreach($result as $row){
+                        $userProjectList[$i]['Title'] = $row->title;
+                        $userProjectList[$i]['Id'] = $row->id;
+                        $userProjectList[$i]['Language'] = $row->language;
+                        $userProjectList[$i]['Image'] = $row->image;
+                        $userProjectList[$i]['Likes'] = $row->likes;
+                        $i++;
+                    }
+                    return $userProjectList;
+                }else{ 
+                    return false;
                 }
-
-                return $userProjectList;
             }
         }
 

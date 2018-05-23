@@ -1,13 +1,5 @@
 <?php
-    class DB{
-        public static function getConection(){
-            $paramPath = ROOT.'/config/db_params.php';
-            $params = include($paramPath);
+            require ROOT."/config/rb-rb.php";
+            R::setup('mysql:host=localhost;dbname=portfolio_db', 'root', '');
 
-            $dsn = "mysql:host={$params['host']}; dbname={$params['dbname']}";
-            $db = new PDO($dsn, $params['user'], $params['password']);
-
-            return $db;
-        }
-    }
 ?>

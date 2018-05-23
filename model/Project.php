@@ -9,50 +9,53 @@
 
             if ($id){
 
-                $db = DB::getConection();
+                require_once ROOT."/components/db.php";
 
-                $result = $db->query('SELECT id, User_id, Title, Date, Language, Description '
-                        . 'FROM projects '
-                       . 'WHERE id='.$id);
+                $result = R::find("projects", "id = ?", array($id));
+                $i = 0;
+                foreach ($result as $row){
+                    $projectItem['id'] = $row->id;
+                    $projectItem['User_id'] = $row->user_id;
+                    $projectItem['Title'] = $row->title;
+                    $projectItem['Date'] = $row->date;
+                    $projectItem['Language'] = $row->language;
+                    $projectItem['Description'] = $row->description;
+                    $projectItem['Likes'] = $row->likes;
+                    $projectItem['Image'] = $row->image;
+                    $i++;
+                }
+                $result = R::find("users", $projectItem['User_id']);
 
-                $result->setFetchMode(PDO::FETCH_ASSOC);
-
-                $projectItem = $result->fetch();
-
-                $result = $db->query('SELECT name, surname '
-                . 'FROM users '
-               . 'WHERE id='.$projectItem['User_id']);
-
-                $result->setFetchMode(PDO::FETCH_ASSOC);
-
-                $projectItem += $result->fetch();
+                foreach ($result as $row){
+                    $projectItem['User_name'] = $row->name;
+                    $projectItem['User_surname'] = $row->surname;
+                }
 
                 return $projectItem;
+
+                R::close();
             }
         }
 
         public static function getProjectList(){
 
-            $db = DB::getConection();
-
             $projectList = array();
 
-            $result = $db->query('SELECT id, User_id, Title, Date, Language, Description, Likes '
-                    . 'FROM projects');
-            
+            require_once ROOT."/components/db.php";
+
+            $result = R::findAll("projects");
             $i = 0;
-            while($row = $result->fetch()){
-                $projectList[$i]['id'] = $row['id'];
-                $projectList[$i]['User_id'] = $row['User_id'];
-                $projectList[$i]['Title'] = $row['Title'];
-                $projectList[$i]['Date'] = $row['Date'];
-                $projectList[$i]['Language'] = $row['Language'];
-                $projectList[$i]['Description'] = $row['Description'];
-                $projectList[$i]['Likes'] = $row['Likes'];
+            if (!empty($result)){
+            foreach($result as $row){
+                $projectList[$i]['id'] = $row->id;
+                $projectList[$i]['Title'] = $row->title;
+
                 $i++;
             }
-
             return $projectList;
+            }else{return false;}
+
+            R::close();
         }
 
         public static function getProjectListByPage($page = 1){
@@ -60,42 +63,37 @@
             $page = intval($page);
             $offset = ($page - 1) * self::SHOW_BY_DEFAULT;
 
-            $db = DB::getConection();
-
             $projectList = array();
 
-            $result = $db->query('SELECT id, User_id, Title, Date, Language, Description, Likes '
-                    . 'FROM projects '
-                    . 'ORDER BY id ASC '
-                    . 'LIMIT '.self::SHOW_BY_DEFAULT
-                    . ' OFFSET '.$offset);
-            
+            require_once ROOT."/components/db.php";
+
+            $result = R::find("projects", "ORDER BY id ASC LIMIT ".self::SHOW_BY_DEFAULT." OFFSET ".$offset);
             $i = 0;
-            while($row = $result->fetch()){
-                $projectList[$i]['id'] = $row['id'];
-                $projectList[$i]['User_id'] = $row['User_id'];
-                $projectList[$i]['Title'] = $row['Title'];
-                $projectList[$i]['Date'] = $row['Date'];
-                $projectList[$i]['Language'] = $row['Language'];
-                $projectList[$i]['Description'] = $row['Description'];
-                $projectList[$i]['Likes'] = $row['Likes'];
+            if (!empty($result)){
+            foreach($result as $row){
+                $projectList[$i]['id'] = $row->id;
+                $projectList[$i]['Title'] = $row->title;
+                $projectList[$i]['Date'] = $row->date;
+                $projectList[$i]['Language'] = $row->language;
+                $projectList[$i]['Likes'] = $row->likes;
+                $projectList[$i]['Image'] = $row->image;
                 $i++;
             }
-
             return $projectList;
+            }else{return false;}
+
+            R::close();
         }
 
         public static function getTotalProjectsInList(){
+            
+            require_once ROOT."/components/db.php";
 
-            $db = DB::getConection();
+            $result = R::count("projects");
 
-            $result = $db->query('SELECT count(id) AS count from projects');
+            return $result;
 
-            $result->setFetchMode(PDO::FETCH_ASSOC);
-            $row = $result->fetch();
-
-            return $row['count'];
-
+            R::close();
         }
 
         public static function getCommentsListById($id){
@@ -104,16 +102,14 @@
             if($id){
                 $commentList = array();
 
-                $db = DB::getConection();
-
-                $result = $db->query('SELECT * FROM comments WHERE project_id ='.$id);
+                $result = R::find("comments", "project_id = ? ", array($id));
 
                 $i = 0;
-                while($row = $result->fetch() ){
-                    $commentList[$i]['user_id'] = $row['user_id'];
-                    $commentList[$i]['date'] = $row['date'];
-                    $commentList[$i]['comment'] = $row['comment'];
-                    $commentList[$i]['project_id'] = $row['project_id'];
+                foreach($result as $row){
+                    $commentList[$i]['user_id'] = $row->user_id;
+                    $commentList[$i]['date'] = $row->date;
+                    $commentList[$i]['comment'] = $row->comment;
+                    $commentList[$i]['project_id'] = $row->project_id;
                     $i++;
                 }
 
@@ -127,36 +123,51 @@
 
             if ($id){
 
-                $db = DB::getConection();
+                require_once ROOT."/components/db.php";
 
-                $result = $db->query('SELECT Name '
-                        . 'FROM users '
-                       . 'WHERE id='.$id);
+                $result = R::find("users", "id = ? ", array($id));
 
-                $result->setFetchMode(PDO::FETCH_ASSOC);
-
-                $userName = $result->fetch();
-
+                foreach($result as $row){
+                    $userName['name'] = $row->name;
+                    $userName['surname'] = $row->surname;
+                }
+                
                 return $userName;
             }
         }
 
-        public static function CommentProject($id, $comment){
+        public static function CommentProject($id, $comment_text){
 
-            $db = DB::getConection();
-
-            $sql = 'INSERT INTO comments (project_id, user_id, comment, date ) '
-                    . 'VALUES (:project_id, :user_id, :comment, :date)';
+            require_once ROOT."/components/db.php";
 
             $date = date('m/d/Y', time());
 
-            $result = $db->prepare($sql);
-            $result->bindParam(':project_id', $id, PDO::PARAM_STR);
-            $result->bindParam(':user_id', $_SESSION['user'], PDO::PARAM_STR);
-            $result->bindParam(':comment', $comment, PDO::PARAM_STR);
-            $result->bindParam(':date', $date, PDO::PARAM_STR);
+            $comment = R::dispense("comments");
 
-            return $result->execute();
+            $comment->project_id = $id;
+            $comment->user_id = $_SESSION['user'];
+            $comment->comment = $comment_text;
+            $comment->date = $date;
+
+            R::store($comment);
+        }
+
+        public static function createProject($options){
+
+            require_once ROOT."/components/db.php";
+
+            $date = date('m/d/Y', time());
+
+            $project = R::dispense("projects");
+
+            $project->user_id = $options['User_id'];
+            $project->title = $options['Title'];
+            $project->language = $options['Language'];
+            $project->description = $options['Description'];
+            $project->date = $options['Date'];
+            $project->link = $options['Link'];
+
+            R::store($project);
 
         }
     }

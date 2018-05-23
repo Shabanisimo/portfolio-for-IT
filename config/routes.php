@@ -1,7 +1,7 @@
 <?php
     return array(
         
-        'users/([0-9]+)' => 'user/view/$1/$2',
+        'users/id([0-9]+)' => 'user/view/$1/$2',
         'projects/([0-9]+)' => 'project/view/$1/$2',
         'companies/([0-9]+)' => 'companies/view/$1/$2',
 
@@ -14,6 +14,8 @@
 
         'settings' => 'settings/edit',
         'projects' => 'project/list',
+        'admin' => 'admin/index',
+        'admin/projects' => 'adminProject/index',
 
         '' => 'project/list',
         

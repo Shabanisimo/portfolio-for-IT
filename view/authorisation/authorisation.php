@@ -14,7 +14,7 @@
                         <input type="password" class="js-password uk-input" name="password" minlength="5" required id="password">
                     </li>
                     <li class="reg-auth__item">
-                        <button type="submit" class="uk-button uk-button-primary  reg-auth__button" name="login">
+                        <button type="submit" class="uk-button uk-button-primary  reg-auth__button" name="Login">
                             Authorization
                         </button>
                     </li>

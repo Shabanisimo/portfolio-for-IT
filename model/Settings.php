@@ -3,19 +3,21 @@
     class Settings{
 
         public static function edit($userId ,$name, $surname, $email, $telephone, $about){
-            $db = DB::getConection();
 
-            $sql = 'UPDATE users SET name = :name, surname = :surname, email = :email, telephone = :telephone, about = :about '
-                    .'WHERE id = :id';
+            require_once ROOT."/components/db.php";
 
-            $result = $db->prepare($sql);
-            $result->bindParam(':id', $userId, PDO::PARAM_INT);
-            $result->bindParam(':name', $name, PDO::PARAM_STR);
-            $result->bindParam(':email', $email, PDO::PARAM_STR);
-            $result->bindParam(':telephone', $telephone, PDO::PARAM_STR);
-            $result->bindParam(':about', $about, PDO::PARAM_STR);
+        
+            $result = R::load('users',$userId);
+                    
+            $result->name = $name;
+            $result->surname = $surname;
+            $result->email = $email;
+            $result->telephone = $telephone;
+            $result->about = $about;
 
-            $result->execute();
+            R::store($result);
+                
+            return false;
         }
 
     }

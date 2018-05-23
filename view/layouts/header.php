@@ -19,11 +19,11 @@
     <header class="header" uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
         <nav class="uk-navbar uk-navbar-container uk-margin" data-menu>
             <div class="uk-navbar-left">
-                <a class="uk-navbar-toggle" uk-navbar-toggle-icon  uk-toggle href="#offcanvas-slide"></a>
+                <a class="uk-navbar-toggle" uk-navbar-toggle-icon  uk-toggle="target: #offcanvas-nav-primary"></a>
                 <h3 class="uk-margin-small-left"><a href="#">IT-portfolio</a></h3>
             </div>
             
-        <div id="offcanvas-slide" class="menu" uk-offcanvas="flip: true; mode: reveal;">
+        <div id="offcanvas-nav-primary" class="menu" uk-offcanvas="flip: true; mode: reveal;">
                 <div class="uk-offcanvas-bar" >
                     <div class="menu__photo">
                         <img src="/template/img/photo.svg" alt="Аватар" class="menu__img">
@@ -32,7 +32,7 @@
                     <ul class="uk-nav uk-nav-default">
                         <?php if (!User::isGuest()) :?>
                             <li class="menu__item menu__item--mainpage">
-                                <a href="/users/<?php echo $_SESSION['user']; ?>" class="menu__link">User profile</a>
+                                <a href="/users/id<?php echo $_SESSION['user']; ?>" class="menu__link">User profile</a>
                             </li>
                         <?php endif;?>
                         <li class="menu__item menu__item--projects">

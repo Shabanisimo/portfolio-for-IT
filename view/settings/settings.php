@@ -11,7 +11,7 @@
                 <label class="uk-lable" for="telephone">Telephone</label>
                 <input class="uk-input uk-margin-bottom" name="telephone" id="telephone" value="<?php echo $telephone; ?>"></input>
                 <label class="uk-lable" for="about">About me</label>
-                <textarea class="uk-input" name="about" id="about" value="<?php echo $about;  ?>"></textarea>
+                <textarea class="uk-input" name="about" id="about"><?php echo $about; ?></textarea>
                 <button class="uk-button uk-button-primary uk-margin-top" type="submit" name="edit">Send</button>
             </form>
         </section>

@@ -20,11 +20,11 @@
         <nav class="uk-navbar uk-navbar-container uk-margin" data-menu>
             <div class="uk-navbar-left">
                 <a class="uk-navbar-toggle" uk-navbar-toggle-icon  uk-toggle="target: #offcanvas-nav-primary"></a>
-                <h3 class="uk-margin-small-left"><a href="#">IT-portfolio</a></h3>
+                <h3 class="uk-margin-small-left"><a href="/">IT-portfolio</a></h3>
             </div>
             
-        <div id="offcanvas-nav-primary" class="menu" uk-offcanvas="flip: true; mode: reveal;">
-                <div class="uk-offcanvas-bar" >
+        <div id="offcanvas-nav-primary" class="menu" uk-offcanvas="flip: true;">
+                <div class="uk-offcanvas-bar main-menu" >
                     <div class="menu__photo">
                         <img src="/template/img/photo.svg" alt="Аватар" class="menu__img">
                     </div>
@@ -42,10 +42,14 @@
                             <li class="menu__item menu__item--projects">
                                 <a href="/registration" class="menu__link">Registration</a>
                             </li>
-                        <?php endif; ?>
-                        <?php if (User::isGuest()) :?>
                             <li class="menu__item menu__item--projects">
-                                <a href="/authorisation" class="menu__link">Authorisation</a>
+                                <a href="/authorization" class="menu__link">Authorisation</a>
+                            </li>
+                            <li class="menu__item menu__item--projects">
+                                <a href="companyRegistration" class="menu__link">Company registration</a>
+                            </li>
+                            <li class="menu__item menu__item--projects">
+                                <a href="companyAuthorization" class="menu__link">Company authorisation</a>
                             </li>
                         <?php endif; ?>
                         <?php if (!User::isGuest()) :?>

@@ -24,11 +24,15 @@
                     $projectItem['Image'] = $row->image;
                     $i++;
                 }
-                $result = R::find("users", $projectItem['User_id']);
+
+                $user_id = $projectItem['User_id'];
+
+                $result = R::find("users", "id = ?", array($user_id));
 
                 foreach ($result as $row){
                     $projectItem['User_name'] = $row->name;
                     $projectItem['User_surname'] = $row->surname;
+                    $i++;
                 }
 
                 return $projectItem;
@@ -67,7 +71,7 @@
 
             require_once ROOT."/components/db.php";
 
-            $result = R::find("projects", "ORDER BY id ASC LIMIT ".self::SHOW_BY_DEFAULT." OFFSET ".$offset);
+            $result = R::find("projects", "ORDER BY id DESC LIMIT ".self::SHOW_BY_DEFAULT." OFFSET ".$offset);
             $i = 0;
             if (!empty($result)){
             foreach($result as $row){
@@ -136,22 +140,6 @@
             }
         }
 
-        public static function CommentProject($id, $comment_text){
-
-            require_once ROOT."/components/db.php";
-
-            $date = date('m/d/Y', time());
-
-            $comment = R::dispense("comments");
-
-            $comment->project_id = $id;
-            $comment->user_id = $_SESSION['user'];
-            $comment->comment = $comment_text;
-            $comment->date = $date;
-
-            R::store($comment);
-        }
-
         public static function createProject($options){
 
             require_once ROOT."/components/db.php";
@@ -169,6 +157,7 @@
 
             R::store($project);
 
+            return $project;
         }
     }
 

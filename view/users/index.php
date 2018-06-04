@@ -1,12 +1,14 @@
-<?php include ROOT.'/view/layouts/header.php'; ?>
+<?php include ROOT.'/view/layouts/header.php';?>
     <main class="user-profile">
         <section class="user-profile__info">
-            <div class="user-profile__info_photo">
-                <img src="">
+            <div class="user-profile__photo-block">
+                <img src="" class="user-profile__photo">
             </div>
             <div class="user-profile__info_data">
                 <h2 class="user-profile__info_data-name"> <?php echo $userItem['name'],' ',$userItem['surname']; ?> </h2>
-                <p>Mobile number:   <?php echo $userItem['telephone']; ?> </p>
+                <?php if ($userItem['telephone'] != '') :?>
+                    <p>Mobile number:   <?php echo $userItem['telephone']; ?> </p>
+                <?php endif; ?>
                 <p>E-mail: <a href=""> <?php echo $userItem['email']; ?> </a></p>
                 <p>About: <?php echo $userItem['about']; ?></p>
             </div>
@@ -51,7 +53,7 @@
             <div class="uk-modal-header">
                 <h2 class="uk-modal-title">Add prject</h2>
             </div>
-            <form class="add-poject__block uk-modal-body" uk-overflow-auto method="POST" enctype="multipart/form-data">
+            <form action="" class="add-poject__block uk-modal-body" uk-overflow-auto method="POST" enctype="multipart/form-data">
                 <div class="uk-margin">
                     <label class="uk-form-label" for="input_proj-name">Project name</label>
                     <input type="text" class="uk-input" id="project_name" name="project_name">

@@ -50,7 +50,7 @@
                     $result = User::registration($login, $password, $name, $surname, $email, $telephone);
                 }
 
-                header("Location: /authorisation/authorisation.php");
+                header("Location: /authorization");
                 
             }
 
@@ -106,7 +106,7 @@
 
             }
 
-            require_once(ROOT.'/view/authorisation/authorisation.php');
+            require_once(ROOT.'/view/authorization/authorization.php');
 
             return true;
         }
@@ -114,7 +114,7 @@
         public function actionLogout(){
             session_start();
             unset($_SESSION["user"]);
-            header("Location: /authorisation");
+            header("Location: /authorization");
         }
 
         public function actionList(){
@@ -130,6 +130,8 @@
             $userItem = User::getUserItemById($id);
             $userProjectList = User::getUserProjectsById($id);
             $userAccount = User::checkUserAccount($id);
+            
+            require_once ROOT."/class/upload_files.class.php";
 
             if (isset($_POST['addProject'])){
                 
@@ -146,13 +148,14 @@
                     $errors[] = 'Заполните поля';
                 }
                 
+
                 if ($errors == false){
                     $id = Project::createProject($options);
 
-                    if ($id){
-                        if (is_uploaded_file($_FILES["image"]["tmp_name"])){
-                            move_uploaded_file($_FILE["image"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . "/upload/projects/");
-                        }
+                
+                    if (!empty($id)){
+                      $file =  new Upload();
+                      $file->upload_files();
                     };
                 }
 

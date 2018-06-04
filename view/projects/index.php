@@ -13,8 +13,8 @@
                 <a class="uk-card-title" href="/projects/<?php echo $projectItem['id']; ?>"><?php echo $projectItem['Title']; ?></a>
                 <p>Language: <?php echo $projectItem['Language']; ?></p>
             </div>
-            <div class="uk-card-footer">
-                <a uk-icon="heart"></a>
+            <div class="uk-card-footer like">
+                <a uk-icon="heart" class="like"></a>
                 <span class="likes-count"><?php echo $projectItem['Likes']; ?></span>
             </div>
         </div>

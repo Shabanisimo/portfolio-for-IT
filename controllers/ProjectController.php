@@ -19,14 +19,13 @@
 
         public function actionView($id){
             $projectItem = Project::getProjectItemById($id);
-            $commentList = Project::getCommentsListById($id);
+
+            $commentList = array_reverse(Project::getCommentsListById($id));
 
             require_once(ROOT.'/view/projects/view.php');
-
-            if (isset($_POST['comment']) ){
-                $comment = $_POST['comment-text'];
-                    Project::CommentProject($id, $comment);
-            }
+        
+            $replacement = array();
+            print_r($replacement);
 
             return true;
         }

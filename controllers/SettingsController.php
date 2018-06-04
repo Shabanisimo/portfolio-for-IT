@@ -14,33 +14,6 @@
             $telephone = $user['telephone'];
             $about = $user['about'];
 
-            $result = false;
-
-            if(isset($_POST['edit'])){
-                $name = $_POST['name'];
-                $surname = $_POST['surname'];
-                $email = $_POST['email'];
-                $telephone = $_POST['telephone'];
-                $about = $_POST['about'];
-
-                $errors = false;
-
-
-                if (!User::checkName($name)){
-                    $errors = 'Имя должен быть длинее 2 символов';
-                }
-                if (!User::checkSurname($surname)){
-                    $errors = 'Фамилия должен быть длинее 2 символов';
-                }
-                if (!User::checkEmail($email)){
-                    $errors = 'Неправильный Email';
-                }
-
-                if ($errors == false){
-                    $result = Settings::edit($userId ,$name, $surname, $email, $telephone, $about);
-                }
-            }
-
             require_once(ROOT.'/view/settings/settings.php');
             
             return true;

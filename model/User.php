@@ -168,12 +168,19 @@
 
             if($id)
             {
-                $db = DB::getConection();
 
-                $result = $db->query('SELECT name, surname FROM users WHERE id='.$id);
-                $result->setFetchMode(PDO::FETCH_ASSOC);
-    
-                $user = $result->fetch();
+                require_once ROOT."/components/db.php";
+
+                $result = R::findAll("users", "id = ?", array($id));
+
+                $i = 0;
+                $user;
+
+                foreach ($result as $row){
+                    $user['Name'] = $row->name;
+                    $user['Surname'] = $row->surname;
+                    $i++;
+                }
                     
                 return $user;
                 

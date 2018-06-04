@@ -4,7 +4,6 @@
 
         public function actionList($page = 1){
 
-
             $projectList = array();
             $projectList = Project::getProjectListByPage($page);
 
@@ -29,52 +28,27 @@
             
             $login = '';
             $password = '';
-            $name = '';
-            $surname = '';
-            $email = '';
+            $title = '';
+            $website = '';
             $telephone = '';
             $result = false;
 
             if (isset($_POST['companySignup'])){
                 $login = $_POST['login'];
                 $password = $_POST['password'];
-                $name = $_POST['name'];
-                $surname = $_POST['surname'];
-                $email = $_POST['email'];
+                $title = $_POST['title'];
+                $website = $_POST['website'];
                 $telephone = $_POST['telephone'];
 
                 $errors = false;
 
-                if (!User::checkLogin($login)){
-                    $errors = 'Логин должен быть длинее 4 символов';
-                }
-                if (!User::checkPassword($password)){
-                    $errors = 'Пароль должен быть длинее 4 символов';
-                }
-                if (!User::checkName($name)){
-                    $errors = 'Имя должен быть длинее 2 символов';
-                }
-                if (!User::checkSurname($surname)){
-                    $errors = 'Фамилия должен быть длинее 2 символов';
-                }
-                if (!User::checkEmail($email)){
-                    $errors = 'Неправильный Email';
-                }else{
-                    if (User::checkEmailExists($email)){
-                        $errors = 'Email уже занят';
-                    }
-                }
-                /*if (isset($telephone)){
-                    echo '<br>telephone: ok';
-                }
-                else{ echo '<br>Логин должен быть длинее 4 символов' }*/
-
                 if ($errors == false){
-                    $result = User::registration($login, $password, $name, $surname, $email, $telephone);
+                    $result = Company::registration($login, $password, $title, $website, $telephone);
+                    header("Location: /companyAuthorization");
                 }
             }
 
-            require_once(ROOT.'/view/registration/registration.php');
+            require_once(ROOT.'/view/registration/companyRegistration.php');
 
             return true;
         }
@@ -89,20 +63,20 @@
                 $login = $_POST['login'];
                 $password = $_POST['password'];
 
-                $userId = User::checkUserData($login, $password);
+                $companyId = Company::checkCompanyData($login, $password);
 
-                if ($userId == false){
+                if ($companyId == false){
                     $errors = 'Неправильный логин или пароль!';
                 }else{
-                    User::authorisation($userId);
+                    Company::authorisation($companyId);
                     $errors = '';
 
-                    header("Location: /users/id".$userId);
+                    header("Location: /company/id".$companyId);
                 }
 
             }
 
-            require_once(ROOT.'/view/authorisation/authorisation.php');
+            require_once(ROOT.'/view/authorization/companyAuthorization.php');
 
             return true;
         }

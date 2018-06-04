@@ -1,7 +1,7 @@
 /*Burger menu and header*/
 html{
     font-family: "Roboto", Verdana, Geneva, Tahoma, sans-serif;
-    background-color: #F9F9FA;
+    background-color: #ffffff;
 }
 
 /*Main block*/
@@ -15,11 +15,22 @@ html{
 
 .user-profile__info{
     display: flex;
+    flex-direction: row;
+    align-items: flex-start;
 }
 
-.user-profile__info_photo{
+.user-profile__photo-block{
+  width: 200px;
+  height: 200px;
+}
+
+.user-profile__photo{
     background-color:#E9F1F7;
-    padding: 10px;    
+    padding: 10px;   
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    border-radius: 50%;
 }
 
 .user-profile__info_photo img{
@@ -37,14 +48,22 @@ html{
 }
 
 @media (max-width: 835px){
+  .user-profile{
+    padding: 0 10px;
+  }
+
+  .user-profile__photo-block{
+    margin: 0 auto;
+  }
+
   .user-profile__info{
     flex-direction: column;
   }
-
   
   .user-profile__portfolio{
     width: 100%;
     margin: 0 auto;
+    padding: 0 10px;
   }
 }
 
@@ -80,4 +99,17 @@ html{
   padding: 0 20px;
   max-width: 1000px;
   margin: 0 auto;
+}
+
+
+.menu__photo{
+  margin-bottom: 30px;
+}
+
+.menu__item{
+  padding: 2px 3px;
+}
+
+.menu__item:hover{
+  background-color: #F9F9FA;
 }

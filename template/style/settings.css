@@ -6,15 +6,18 @@ html{
       max-width: 1100px;
       margin: 0 auto;
       display: flex;
+      align-items: flex-start;
   }
 
   .settings-block{
       display: flex;
       flex-direction: row;
+      width: 100%;
+      padding-right: 20px;
   }
 
   .settings{
-      max-width: 600px;
+      max-width: 500px;
       width: 100%;
   }
 
@@ -23,6 +26,35 @@ html{
   }
 
   .about{
-      max-height: 300px;
-      height: 100%;
+      height: 250px;
+  }
+
+  table th{
+      text-align: left !important;
+  }
+
+  .edit-poject__block{
+      padding: 50px 0 0 20px;
+      margin: 0 auto !important;
+      max-width: 800px !important;
+      width: 100% !important;
+  }
+
+  @media(max-width: 1024px){
+      .settings-block{
+          flex-direction: column;   
+          margin: 0 auto;
+          padding: 0 20px 0 0;
+      }
+
+      .settings{
+          max-width: 540px;
+          width: 100%;
+      }
+  }
+
+  @media(max-width: 600px){
+      .settings-block{
+          max-width: none;
+      }
   }

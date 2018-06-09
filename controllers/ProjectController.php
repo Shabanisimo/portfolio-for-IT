@@ -24,9 +24,6 @@
 
             require_once(ROOT.'/view/projects/view.php');
         
-            $replacement = array();
-            print_r($replacement);
-
             return true;
         }
 

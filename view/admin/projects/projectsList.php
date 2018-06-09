@@ -26,8 +26,8 @@
                     <?php $user = User::findUserNameById($projectItem['User_id']); echo $user['Name']; echo ' '; echo $user['Surname']; ?>
                 </a>
             </td>
-            <td><a href="<?php echo $projectItem['id']; ?>" class="uk-icon-link" uk-icon="file-edit"></a></td>
-            <td><a href="<?php echo $projectItem['id']; ?>" class="uk-icon-link" uk-icon="trash"></a></td>
+            <td><a  data-id="<?php echo $projectItem['Id'] ?>" href="/edit/project/<?php echo $projectItem['id'] ?>" class="uk-icon-link" uk-icon="file-edit"></a></td>
+            <td><a  class="deleteProject" data-id="<?php echo $projectItem['id'] ?>" class="uk-icon-link" uk-icon="trash"></a></td>
         </tr>
         <?php endforeach; ?>
     </tbody>

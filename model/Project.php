@@ -17,11 +17,13 @@
                     $projectItem['id'] = $row->id;
                     $projectItem['User_id'] = $row->user_id;
                     $projectItem['Title'] = $row->title;
-                    $projectItem['Date'] = $row->date;
+                    $projectItem['Date'] = str_replace("/", ".",$row->date);
                     $projectItem['Language'] = $row->language;
                     $projectItem['Description'] = $row->description;
                     $projectItem['Likes'] = $row->likes;
                     $projectItem['Image'] = $row->image;
+                    $projectItem['About'] = $row->description;
+                    $projectItem['Link'] = $row->link;
                     $i++;
                 }
 
@@ -77,9 +79,9 @@
             foreach($result as $row){
                 $projectList[$i]['id'] = $row->id;
                 $projectList[$i]['Title'] = $row->title;
-                $projectList[$i]['Date'] = $row->date;
+                $projectList[$i]['Date'] = str_replace("/", ".",$row->date);
                 $projectList[$i]['Language'] = $row->language;
-                $projectList[$i]['Likes'] = $row->likes;
+                $projectList[$i]['Likes'] = $likes= R::count('likes', 'project_id = ?', array($row->id));
                 $projectList[$i]['Image'] = $row->image;
                 $i++;
             }
@@ -158,6 +160,54 @@
             R::store($project);
 
             return $project;
+        }
+
+        public static function updateProject($options){
+
+            require_once ROOT."/components/db.php";
+
+            $date = date('m/d/Y', time());
+
+            $project = R::load("projects", $options['id']);
+
+            $project->user_id = $options['User_id'];
+            $project->title = $options['Title'];
+            $project->language = $options['Language'];
+            $project->description = $options['Description'];
+            $project->date = $options['Date'];
+            $project->link = $options['Link'];
+            if ($options['Image']){
+                $project->image = $options['Image'];
+            }
+            R::store($project);
+
+            return $project;
+
+        }
+    
+        public static function checkLike($projectId, $userId){
+            require_once ROOT."/components/db.php";
+
+            $count = 0;
+
+            $result = R::find('likes', 'user_id = ? AND project_id = ?', array($userId, $projectId));
+            foreach($result as $row){
+                $count++;
+            }
+
+            if ($count>=1){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public static function commentsCount($projectId){
+            require_once ROOT."/components/db.php";
+
+            $count = R::count('comments', 'project_id = ?', array($projectId));
+
+            return $count;
         }
     }
 

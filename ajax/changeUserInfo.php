@@ -7,7 +7,7 @@
         session_start();
         
     $result = R::load('users', $_SESSION['user']);
-        
+
     $result->name = $_POST['name'];
     $result->surname = $_POST['surname'];
     $result->email = $_POST['email'];

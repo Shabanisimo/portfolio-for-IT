@@ -13,7 +13,7 @@
         </section>
         <hr class="uk-divider-icon">
         <?php if($userAccount == true) :?>
-            <?php echo '<button class="add-project_btn uk-button uk-button-primary uk-text-right uk-margin-top" href="#modal-overflow" uk-toggle>Add project</button>'; ?>
+            <?php echo '<button class="add-project_btn uk-button uk-button-primary uk-text-right uk-margin-top" href="#modal-overflow" uk-toggle>Add vacancy</button>'; ?>
         <?php endif; ?>
         <section class="user-profile__portfolio uk-margin-top">
             <div uk-slider>
@@ -46,4 +46,4 @@
             </div>
         </section>
     </main> 
-    <?php include ROOT.'/view/layouts/footer.php'; ?>
+<?php include ROOT.'/view/layouts/footer.php'; ?>

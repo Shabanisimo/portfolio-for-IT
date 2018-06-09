@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="en" class="uk-background-muted">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,10 +17,10 @@
 </head>
 <body>
     <header class="header" uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
-        <nav class="uk-navbar uk-navbar-container uk-margin" data-menu>
+        <nav class="uk-navbar" data-menu>
             <div class="uk-navbar-left">
                 <a class="uk-navbar-toggle" uk-navbar-toggle-icon  uk-toggle="target: #offcanvas-nav-primary"></a>
-                <h3 class="uk-margin-small-left"><a href="/">IT-portfolio</a></h3>
+                <h3 class="uk-margin-small-left"><a href="/" class="title">IT-portfolio</a></h3>
             </div>
             
         <div id="offcanvas-nav-primary" class="menu" uk-offcanvas="flip: true;">
@@ -47,9 +47,6 @@
                             </li>
                             <li class="menu__item menu__item--projects">
                                 <a href="companyRegistration" class="menu__link">Company registration</a>
-                            </li>
-                            <li class="menu__item menu__item--projects">
-                                <a href="companyAuthorization" class="menu__link">Company authorisation</a>
                             </li>
                         <?php endif; ?>
                         <?php if (!User::isGuest()) :?>

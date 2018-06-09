@@ -1,7 +1,8 @@
 <?php include ROOT.'\view\layouts\header.php';?>
     <main class="settings-container">
         <section class="settings-block">
-            <form class="uk-margin-top uk-margin-left settings" method="POST" action="">
+            <form class="uk-margin-left settings" method="POST" action="">
+            <h2>Change user info</h2>
                 <label class="uk-lable" for="name">Name</label>
                 <input class="uk-input uk-margin-bottom name settings_item" name="name" id="name" value="<?php echo $name;  ?>"></input>
                 <label class="uk-lable" for="surname">Surname</label>
@@ -16,10 +17,36 @@
             </form>
             <div class="settings">
                 <form class="uk-margin-top uk-margin-left settings" method="POST" cation="">
+                <h2>Change user password</h2>
                     <label class="uk-lable" for="newpass">Change password</label>
                     <input type="password" class="uk-input uk-margin-bottom password settings_item" name="newpass" id="password"></input>
                     <button class="uk-button uk-button-primary editPassword" type="submit" name="editpass">Send</button>
                 </form>
+                <div class="setting__project-list uk-margin-small-left uk-margin-large-top">
+                <h2>User project list</h2>
+                    <table class="uk-table uk-table-hover uk-table-divider">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>Project name</th>
+                                <th>Date</th>
+                                <th>Edit</th>
+                                <th>Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($projectList as $projectItem): ?>
+                            <tr data-id="<?php echo $projectItem['Id'] ?>">
+                                <td><?php echo $projectItem['Id'] ?></td>
+                                <td><a href="/projects/<?php echo $projectItem['Id'] ?>"><?php echo $projectItem['Title'] ?></a></td>
+                                <td><?php echo $projectItem['Date'] ?></td>
+                                <td><a uk-icon="file-edit" data-id="<?php echo $projectItem['Id'] ?>" href="/edit/project/<?php echo $projectItem['Id'] ?>"></a></td>
+                                <td><a uk-icon="trash" class="deleteProject" data-id="<?php echo $projectItem['Id'] ?>"></a></td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
     </main>

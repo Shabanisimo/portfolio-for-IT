@@ -2,7 +2,11 @@
     <main class="user-profile">
         <section class="user-profile__info">
             <div class="user-profile__photo-block">
-                <img src="" class="user-profile__photo">
+            <?php if ($userItem['image']): ?>
+                <img src="../upload/images/<?php echo $userItem['image']; ?>" class="user-profile__photo">
+            <?php else: ?>
+                <img src="../upload/images/avatar_img.png" class="user-profile__photo">
+            <?php endif; ?>
             </div>
             <div class="user-profile__info_data">
                 <h2 class="user-profile__info_data-name"> <?php echo $userItem['name'],' ',$userItem['surname']; ?> </h2>
@@ -15,7 +19,7 @@
         </section>
         <hr class="uk-divider-icon">
         <?php if($userAccount == true) :?>
-            <?php echo '<button class="add-project_btn uk-button uk-button-primary uk-text-right uk-margin-top" href="#modal-overflow" uk-toggle>Add project</button>'; ?>
+            <?php echo '<a class="add-project_btn uk-button uk-button-primary uk-text-right uk-margin-top" href="">Add project</a>'; ?>
         <?php endif; ?>
         <section class="user-profile__portfolio uk-margin-top">
             <div uk-slider>
@@ -25,12 +29,25 @@
                             <?php foreach ($userProjectList as $userProjectItem):?>
                                 <li class="user-profile__project uk-card-default uk-margin-left">
                                     <div class="project-photo uk-card-media-top uk-inline-clip uk-transition-toggle" tabindex="0">
-                                        <img src="../upload/images/<?php echo $userProjectItem['Image']; ?>">
+                                        <img src="../upload/projects/<?php echo $userProjectItem['Image']; ?>">
                                     </div>
                                     <div class="project-info uk-card-body">
-                                        <a class="uk-card-title" href="/projects/<?php echo $userProjectItem['Id']; ?>"><?php echo $userProjectItem['Title'];?></a>
+                                        <a class="uk-card-title project-title" data-id="<?php echo $userProjectItem['Id']; ?>" href="/projects/<?php echo $userProjectItem['Id']; ?>"><?php echo $userProjectItem['Title'];?></a>
                                         <p>Language: <?php echo $userProjectItem['Language'];?></p>
                                     </div>
+                                    <?php if(!User::isGuest()) :?>
+                                        <div class="uk-card-footer likes project-card__footer" >
+                                            <button class="like uk-button <?php if(Project::checkLike($userProjectItem['Id'], $_SESSION['user']) == true) echo "active_h";?>" data-id="<?php echo $userProjectItem['Id']; ?>">
+                                                <span class="likes-count"><a uk-icon="heart"></a><?php echo $userProjectItem['Likes']; ?></span>
+                                            </button>
+                                            <span><span uk-icon="comments" class="comment-icon"></span><span><?php echo Project::commentsCount($userProjectItem['Id']); ?></span></span>
+                                        </div>
+                                    <?php else :?>
+                                        <div class="uk-card-footer likes project-card__footer" >
+                                            <span><span uk-icon="heart" class="heart-icon"></span><?php echo $userProjectItem['Likes']; ?></span>
+                                            <span><span uk-icon="comments" class="comment-icon"></span><span><?php echo Project::commentsCount($userProjectItem['Id']); ?></span></span>
+                                        </div>
+                                    <?php endif; ?>
                                 </li>
                             <?php endforeach;?>
                         </ul>
@@ -44,50 +61,10 @@
                         <a class="uk-position-center-right-out  uk-position-small" href="#" uk-slidenav-next uk-slider-item="next"></a>
                     </div>
                 </div>
-                <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+                <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin project-list_dotnav"></ul>
             </div>
         </section>
     </main> 
-    <div class="modal"  id="modal-overflow" uk-modal>
-        <div class="modal-guts uk-modal-dialog">
-            <div class="uk-modal-header">
-                <h2 class="uk-modal-title">Add prject</h2>
-            </div>
-            <form action="" class="add-poject__block uk-modal-body" uk-overflow-auto method="POST" enctype="multipart/form-data">
-                <div class="uk-margin">
-                    <label class="uk-form-label" for="input_proj-name">Project name</label>
-                    <input type="text" class="uk-input" id="project_name" name="project_name">
-                </div>
-                <div class="uk-margin">
-                    <label class="uk-form-label" for="input_proj-lang">Project lenguage</label>
-                    <input type="text" class="uk-input" id="project_lang" name="project_lang">
-                </div>
-                <div class="uk-margin">
-                    <label class="uk-form-label" for="textarea_description">Description</label>
-                    <textarea name="description" class="uk-input" id="description"></textarea>
-                </div>
-                <div class="uk-margin">
-                    <label class="uk-form-label" for="link">Link</label>
-                    <input type="text" class="uk-input" id="proj_link" name="proj_link">
-                </div>
-                <div class="uk-margin js-upload uk-width-1-1" uk-form-custom>
-                    <div class="js-upload uk-placeholder uk-text-center">
-                        <span uk-icon="icon: cloud-upload"></span>
-                        <span class="uk-text-middle">Load photo for project</span>
-                        <div uk-form-custom>
-                            <input type="file" name="image">
-                            <span class="uk-link">selecting one</span>
-                        </div>
-                    </div>
-                    <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
-                </div>
-                <div class="uk-modal-footer uk-text-right">
-                    <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-                    <button class="uk-button uk-button-primary" type="submit" name="addProject">Save</button>                    
-                </div>    
-            </form>    
-        </div>
-    </div> 
 <script>
 
     var bar = document.getElementById('js-progressbar');

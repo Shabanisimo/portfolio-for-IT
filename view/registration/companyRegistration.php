@@ -24,7 +24,7 @@
                             </li>
                             <li class="reg-auth__item">
                                 <label>Email</label>
-                                <input type="text" name="website" id="website" class="uk-input" value="<?php echo $website; ?>">
+                                <input type="text" name="email" id="email" class="uk-input" value="<?php echo $website; ?>">
                             </li>
                             <li class="reg-auth__item">
                                 <label>Telephone</label>

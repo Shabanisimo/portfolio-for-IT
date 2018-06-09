@@ -120,9 +120,6 @@
         public function actionList(){
             $userList = array();
             $userList = User::getUserList();
-            echo '<pre>';
-            print_r('Suck');
-            echo '</pre>';
             return true;
         }
 
@@ -130,6 +127,7 @@
             $userItem = User::getUserItemById($id);
             $userProjectList = User::getUserProjectsById($id);
             $userAccount = User::checkUserAccount($id);
+            $type = User::checkUserType($id);
             
             require_once ROOT."/class/upload_files.class.php";
 
@@ -161,7 +159,12 @@
 
             }
 
-            require_once(ROOT.'/view/users/index.php');
+            if($userItem && $type == 1)
+                require_once(ROOT.'/view/users/index.php');
+            else if($userItem && $type == 2)
+                require_once(ROOT.'/view/companies/index.php');
+            else 
+                require_once(ROOT.'view/404/404.php');
 
             return true;
         }

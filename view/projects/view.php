@@ -1,7 +1,7 @@
 <?php include ROOT.'\view\layouts\header.php';?>
 <main class="project">
     <section class="project--header">
-        <img class="project--header_img" src="/upload/images//<?php echo $projectItem['Image'] ?>">
+        <img class="project--header_img" src="../upload/projects/<?php echo $projectItem['Image'] ?>">
     </section>
     <section class="project--info">
         <div class="uk-flex">
@@ -10,7 +10,7 @@
         </div>
         <h1><?php echo $projectItem['Title']; ?></h1>
         <p><?php echo $projectItem['Description']; ?></p>
-        <a href="<?php echo $projectItem['Link']; ?>" target="_blank">Project link</a>
+        <a href="<?php echo htmlspecialchars((0 === strpos($projectItem['Link'], 'http')? $projectItem['Link']: 'http://' . $projectItem['Link'])); ?>">Project link</a>
     </section>
     <section>
     <?php if(!User::isGuest()) : ?>
@@ -20,15 +20,21 @@
         </form>
     <?php endif; ?>
     <?php foreach($commentList as $commentItem):?>
-    <article class="uk-comment uk-comment-primary uk-margin-bottom">
+    <article class="uk-comment uk-comment-primary uk-margin-bottom comments">
         <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
             <div class="uk-width-auto">
-                <img class="uk-comment-avatar" src="../docs/images/avatar.jpg" width="80" height="80" alt="">
+            <div class="avatar-container">
+            <?php if (User::getUserPhoto($commentItem['user_id'])): ?>
+                <img src="../upload/images/<?php echo $image = User::getUserPhoto($commentItem['user_id']); ?>" class="avatar uk-comment-avatar" alt="">
+            <?php else: ?>
+                <img src="../upload/images/avatar_img.png" class="avatar uk-comment-avatar" alt="">
+            <?php endif; ?>  
+            </div>          
             </div>
             <div class="uk-width-expand">
                 <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="/users/id<?php echo $commentItem['user_id'];?>"><?php $user = Project::getUserName($commentItem['user_id']); echo $user['name'].' '.$user['surname']; ?></a></h4>
                 <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
-                    <li><?php echo $commentItem['date'] = str_replace("/", ".",$commentItem['date']);?></li>
+                    <li><?php echo $commentItem['date'];?></li>
                 </ul>
             </div>
         </header>

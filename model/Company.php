@@ -2,23 +2,23 @@
 
     class Company{
 
-        public static function registration($login, $password, $title, $website, $telephone){
+        public static function registration($login, $password, $title, $email, $telephone){
 
-            $password = md5($password);
-
-            require_once ROOT."/components/db.php";
-        
-            $result = R::dispense('company');
-                    
-            $result->login = $login;
-            $result->password = $password;
-            $result->website = $website;
-            $result->title = $title;
-            $result->telephone = $telephone;
-
-            R::store($result);
-                
-            return false;
+                require_once ROOT."/components/db.php";
+    
+                $new_company = R::dispense("users");
+    
+                $password = md5($password);
+                $type = 2;
+    
+                $new_company->login = $login;
+                $new_company->password = $password;
+                $new_company->name = $title;
+                $new_company->email = $email;
+                $new_company->telephone = $telephone;
+                $new_company->type = $type;
+    
+                R::store($new_company);
         }
 
         public static function authorisation($companyId){

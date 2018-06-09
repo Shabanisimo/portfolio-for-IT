@@ -2,6 +2,8 @@
 
     class Settings{
 
+        
+
     }
 
 ?>

@@ -10,13 +10,22 @@
                 <img src="/upload/images/<?php echo $projectItem['Image']; ?>" alt="">
             </div>
             <div class="uk-card-body">
-                <a class="uk-card-title" href="/projects/<?php echo $projectItem['id']; ?>"><?php echo $projectItem['Title']; ?></a>
+                <a class="uk-card-title project-title"  data-id="<?php echo $projectItem['id']; ?>" href="/projects/<?php echo $projectItem['id']; ?>"><?php echo $projectItem['Title']; ?></a>
                 <p>Language: <?php echo $projectItem['Language']; ?></p>
             </div>
-            <div class="uk-card-footer like">
-                <a uk-icon="heart" class="like"></a>
-                <span class="likes-count"><?php echo $projectItem['Likes']; ?></span>
+            <?php if(!User::isGuest()) :?>
+            <div class="uk-card-footer likes project-card__footer" >
+                <button class="like uk-button <?php if(Project::checkLike($projectItem['id'], $_SESSION['user']) == true) echo "active_h";?>" data-id="<?php echo $projectItem['id']; ?>">
+                    <span class="likes-count"><a uk-icon="heart"></a><?php echo $projectItem['Likes']; ?></span>
+                </button>
+                <span><span uk-icon="comments" class="comment-icon"></span><?php echo $count = Project::commentsCount($projectItem['id']); ?></span>
             </div>
+            <?php else :?>
+            <div class="uk-card-footer likes project-card__footer" >
+                <span><span uk-icon="heart" class="heart-icon"></span><?php echo $projectItem['Likes']; ?></span>
+                <span><span uk-icon="comments" class="comment-icon"></span><?php echo $count = Project::commentsCount($projectItem['id']); ?></span>
+            </div>
+            <?php endif; ?>
         </div>
     <?php endforeach;?>
 </div>

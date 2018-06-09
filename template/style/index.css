@@ -1,7 +1,19 @@
 /*Burger menu and header*/
 html{
     font-family: "Roboto", Verdana, Geneva, Tahoma, sans-serif;
-    background-color: #ffffff;
+}
+
+.header{
+  background: linear-gradient(to left, #28a5f5, #1e87f0);
+}
+
+.title{
+  color: #ffffff;
+}
+
+.title:hover{
+  color: #ffffff;
+  text-decoration: underline;
 }
 
 /*Main block*/
@@ -9,7 +21,7 @@ html{
 .user-profile{
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 30px 40px;
     position: relative;
 }
 
@@ -47,28 +59,8 @@ html{
     font-weight: 900;
 }
 
-@media (max-width: 835px){
-  .user-profile{
-    padding: 0 10px;
-  }
-
-  .user-profile__photo-block{
-    margin: 0 auto;
-  }
-
-  .user-profile__info{
-    flex-direction: column;
-  }
-  
-  .user-profile__portfolio{
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 10px;
-  }
-}
-
 .project-photo{
-  min-height: 200px;
+  height: 234px;
   display: flex;
   align-items: center;
   margin: 0 auto;
@@ -96,9 +88,12 @@ html{
 }
 
 .user-profile__portfolio{
-  padding: 0 20px;
   max-width: 1000px;
   margin: 0 auto;
+}
+
+.project-list_dotnav{
+  max-width: 300px;
 }
 
 
@@ -112,4 +107,22 @@ html{
 
 .menu__item:hover{
   background-color: #F9F9FA;
+}
+
+textarea {
+  resize: none;
+}
+
+@media (max-width: 540px){
+  .user-profile{
+    padding: 0 10px;
+  }
+
+  .user-profile__photo-block{
+    margin: 0 auto;
+  }
+
+  .user-profile__info{
+    flex-direction: column;
+  }
 }

@@ -4,8 +4,7 @@
     <thead>
         <tr>
             <th>id</th>
-            <th>Name</th>
-            <th>Surname</th>
+            <th>User Name</th>
             <th>Get admin</th>
             <th>Edit</th>
             <th>Delete</th>
@@ -20,9 +19,9 @@
                     <?php echo $userItem['Name']; echo ' '; echo $userItem['Surname']; ?>
                 </a>
             </td>
-            <td><a href="<?php echo $projectItem['id']; ?>" class="uk-icon-link" uk-icon="star"></a></td>
-            <td><a href="<?php echo $projectItem['id']; ?>" class="uk-icon-link" uk-icon="file-edit"></a></td>
-            <td><a href="<?php echo $projectItem['id']; ?>" class="uk-icon-link" uk-icon="trash"></a></td>
+            <td><a href="<?php echo $projectItem['id']; ?>" data-id="<?php echo $projectItem['id']; ?>" class="uk-icon-link" uk-icon="star"></a></td>
+            <td><a href="<?php echo $projectItem['id']; ?>" data-id="<?php echo $projectItem['id']; ?>" class="uk-icon-link" uk-icon="file-edit"></a></td>
+            <td><a href="<?php echo $projectItem['id']; ?>" data-id="<?php echo $projectItem['id']; ?>" class="uk-icon-link" uk-icon="trash"></a></td>
         </tr>
         <?php endforeach; ?>
     </tbody>

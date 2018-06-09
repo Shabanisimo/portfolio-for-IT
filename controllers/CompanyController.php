@@ -37,13 +37,13 @@
                 $login = $_POST['login'];
                 $password = $_POST['password'];
                 $title = $_POST['title'];
-                $website = $_POST['website'];
+                $email = $_POST['email'];
                 $telephone = $_POST['telephone'];
 
                 $errors = false;
 
                 if ($errors == false){
-                    $result = Company::registration($login, $password, $title, $website, $telephone);
+                    $result = Company::registration($login, $password, $title, $email, $telephone);
                     header("Location: /companyAuthorization");
                 }
             }

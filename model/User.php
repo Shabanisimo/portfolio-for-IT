@@ -86,6 +86,7 @@
                     $userItem['email'] = $row->email;
                     $userItem['telephone'] = $row->telephone;
                     $userItem['about'] = $row->about;
+                    $userItem['image'] = $row->image;
                 }
 
                 return $userItem;
@@ -153,7 +154,8 @@
                         $userProjectList[$i]['Id'] = $row->id;
                         $userProjectList[$i]['Language'] = $row->language;
                         $userProjectList[$i]['Image'] = $row->image;
-                        $userProjectList[$i]['Likes'] = $row->likes;
+                        $userProjectList[$i]['Likes'] = $likes= R::count('likes', 'project_id = ?', array($row->id));
+                        $userProjectList[$i]['Date'] = $row->date;
                         $i++;
                     }
                     return $userProjectList;
@@ -199,6 +201,55 @@
             }
         }
 
+        public static function getUserPhoto($id){
+
+            $id = intval($id);
+
+            if($id)
+            {
+
+                require_once ROOT."/components/db.php";
+
+                $result = R::find("users", "id = ?", array($id));
+
+                $i = 0;
+                $image;
+
+                foreach ($result as $row){
+                    $image = $row->image;
+                    $i++;
+                }
+                    
+                return $image;
+                
+            }
+
+        }
+
+        public static function checkUserType($id){
+
+            $id = intval($id);
+
+            if($id)
+            {
+
+                require_once ROOT."/components/db.php";
+
+                $result = R::find("users", "id = ?", array($id));
+
+                $i = 0;
+                $type;
+
+                foreach ($result as $row){
+                    $type = $row->type;
+                    $i++;
+                }
+                    
+                return $type;
+                
+            }
+
+        }
 
     }
 

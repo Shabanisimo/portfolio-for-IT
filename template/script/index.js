@@ -1,28 +1,33 @@
-/*$('.like').click(function (event) {
+$('.like').click(function (event) {
 
-  if(!$('.like').hasClass('active_h')) {
-    console.log("2");
-      $.ajax({
-          url: '../ajax/likes.php',
-          type: 'post',
-          data: {'place': getUrlParameter('p')},
-          success: function (like) {
-              $('.like').addClass('active_h');
-          }
-      });
-  }
-  else{
-      $.ajax({
-          url: '../ajax/delLikes.php',
-          type: 'post',
-          data: {'place': getUrlParameter('p')},
-          success: function (like) {
-              $('.like').removeClass('active_h');
-          }
-      });
-  }
-  event.preventDefault();
-});*/
+    projectId = $(this).attr('data-id');
+
+    $this = event.target;
+
+    if(!$(this).hasClass('active_h')) {
+        $.ajax({
+            url: '../ajax/likes.php',
+            type: 'post',
+            data: {'projectId': projectId},
+            success: function (like) {
+                $($this).addClass('active_h');
+                $($this).find('.likes-count').text(parseInt($($this).find('.likes-count').text())+1);
+            }
+        });
+    }
+    else{
+        $.ajax({
+            url: '../ajax/delLikes.php',
+            type: 'post',
+            data: {'projectId': projectId},
+            success: function (like) {
+                $($this).removeClass('active_h');
+                $($this).find('.likes-count').text(parseInt($($this).find('.likes-count').text())-1);
+            }
+        });
+    }
+    event.preventDefault();
+});
 
 $('.comment').click(function (event){
 
@@ -63,6 +68,20 @@ $('.edit').click(function (event){
 
 });
 
+$('.project-title').click(function (event){
+    let projectId = $(this).attr('data-id');
+
+    $.ajax({
+        url: '../ajax/view.php',
+        type: 'post',
+        data: {'projectId': projectId},
+        success: function(data){
+            window.location.href = "/projects/"+projectId;
+        }
+    });
+    event.preventDefault();
+});
+
 $('.editPassword').click(function (event){
     let password = $('.password').val();
 
@@ -76,3 +95,24 @@ $('.editPassword').click(function (event){
     });
     event.preventDefault();
 });
+
+$('.deleteProject').click(function (event){
+
+
+    let projectId = $(this).attr('data-id');
+
+    console.log(projectId);
+
+    $.ajax({
+        url: '../ajax/deleteProject.php',
+        type: 'post',
+        data: {'projectId': projectId},
+        success: function(data){
+            console.log(data);
+            $(this).parent().parent().hide(500);
+            alert('Проект успешно удалён!');
+        }
+    });
+    event.preventDefault();
+});
+

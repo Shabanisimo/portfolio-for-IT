@@ -53,6 +53,8 @@
                 }
 
                 header("Location: /authorization");
+
+                return true;
                 
             }
 
@@ -118,6 +120,7 @@
             session_start();
             unset($_SESSION["user"]);
             header("Location: /authorization");
+            return true;
         }
 
         public function actionList(){
@@ -142,8 +145,18 @@
                 require_once(ROOT.'/view/users/index.php');
             }
             else {
-                require_once(ROOT.'view/404/404.php');
+                require_once(ROOT.'/view/404/404.php');
             }
+
+            return true;
+        }
+
+        public function actionBookmarks(){
+            $title = 'Закладки';
+
+            $projectList = Project::getProjectListFromBookmarks();
+
+            require_once(ROOT.'/view/users/bookmarks.php');
 
             return true;
         }

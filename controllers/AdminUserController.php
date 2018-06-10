@@ -10,6 +10,7 @@
 
             require_once(ROOT.'/view/admin/users/usersList.php');
 
+            return true;
         }
 
     }

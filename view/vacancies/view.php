@@ -49,14 +49,10 @@
                 <h3>Отправить заявку</h3>
                 <form action="/projects/<?php echo $vacancyItem['id']?>" method="POST" class="sendRequest">
                     <div>
-                        <?php if(!User::checkUserEmail($_SESSION['user'])) :?>
                         <label >Email</label>
-                        <input type="text" class="uk-input uk-margin-small-top uk-margin-bottom">
-                        <?php endif; ?>
-                        <?php if(!User::checkUserTelephone($_SESSION['user'])) :?>
+                        <input type="text" class="uk-input uk-margin-small-top uk-margin-bottom" value="<?php echo User::checkUserEmail($_SESSION['user']); ?>">
                         <label >Telephone number</label>
-                        <input type="text" class="uk-input uk-margin-small-top uk-margin-bottom">
-                        <?php endif; ?>
+                        <input type="text" class="uk-input uk-margin-small-top uk-margin-bottom" value="<?php echo User::checkUserTelephone($_SESSION['user']); ?>">
                         <label>Оставьте сообщение:</label>
                         <textarea type="text" class="uk-input uk-margin-small-top"></textarea>
                     </div>

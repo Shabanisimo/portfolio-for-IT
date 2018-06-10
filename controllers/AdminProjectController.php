@@ -10,6 +10,7 @@
 
             require_once(ROOT.'/view/admin/projects/projectsList.php');
 
+            return true;
         }
 
     }

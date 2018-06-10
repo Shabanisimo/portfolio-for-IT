@@ -114,6 +114,10 @@ html{
   margin-top: 30px;
 }
 
+.menu__list{
+  margin-top: 30px;
+}
+
 .menu__item{
   padding: 5px 18px;
 }
@@ -131,6 +135,10 @@ textarea {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
   grid-row-gap: 20px;
+}
+
+.icon{
+  padding-right: 10px;
 }
 
 @media (max-width: 540px){

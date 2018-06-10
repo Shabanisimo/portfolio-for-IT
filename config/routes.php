@@ -14,6 +14,7 @@
 
         'projects/add' => 'project/addProject',
         'vacancy/add' => 'vacancy/addVacancy',
+        'bookmarks' => 'user/bookmarks',
 
         'registration' => 'user/registration',
         'authorization' => 'user/login',

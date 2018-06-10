@@ -209,6 +209,41 @@
 
             return $count;
         }
+
+        public static function likesCount($projectId){
+            require_once ROOT."/components/db.php";
+
+            $count = R::count('likes', 'project_id = ?', array($projectId));
+
+            return $count;
+        }
+
+        public static function getProjectListFromBookmarks(){
+
+            require_once ROOT."/components/db.php";
+
+            $likes = R::findAll("likes", "user_id = ?", array($_SESSION['user']));
+
+            $projectList = array();
+            $i = 0;
+            $j = 0;
+
+            foreach($likes as $like){
+                $result = R::find("projects", "id = ?", array($like->project_id));
+                foreach($result as $row){
+                    $projectList[$i]['id'] = $row->id;
+                    $projectList[$i]['Title'] = $row->title;
+                    $projectList[$i]['Language'] = $row->language;
+                    $projectList[$i]['Description'] = $row->description;
+                    $projectList[$i]['Image'] = $row->image;
+                    $j++;
+                }
+                $i++;
+            }
+
+            return $projectList;
+
+        }
     }
 
 ?>

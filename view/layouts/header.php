@@ -26,44 +26,49 @@
             
         <div id="offcanvas-nav-primary" class="menu" uk-offcanvas="flip: true;">
                 <div class="uk-offcanvas-bar main-menu" >
+                    <?php if (!User::isGuest()) :?>
                     <div class="menu__photo">
                         <img src="/template/img/photo.svg" alt="Аватар" class="menu__img">
                     </div>
                     <div class="menu__title"></div>
-                    <ul class="uk-nav uk-nav-default">
+                    <?php endif; ?>
+                    <ul class="uk-nav uk-nav-default menu__list">
                         <?php if (!User::isGuest()) :?>
                             <li class="menu__item menu__item--mainpage">
-                                <a href="/users/id<?php echo $_SESSION['user']; ?>" class="menu__link">User profile</a>
+                                <a href="/users/id<?php echo $_SESSION['user']; ?>" class="menu__link"><span uk-icon="home" class="icon"></span><span>User profile</span></a>
                             </li>
                         <?php endif;?>
                         <li class="menu__item menu__item--projects">
-                            <a href="/projects" class="menu__link">Projects</a>
+                            <a href="/projects" class="menu__link"><span uk-icon="list" class="icon"></span><span>Projects</span></a>
                         </li>
                         <li class="menu__item menu__item--projects">
-                            <a href="/vacancy" class="menu__link">Vacancies</a>
+                            <a href="/vacancy" class="menu__link"><span uk-icon="list" class="icon"></span><span>Vacancies</span></a>
                         </li>
                         <li class="menu__item menu__item--projects">
-                            <a href="/projects" class="menu__link">Companies</a>
+                            <a href="/projects" class="menu__link"><span uk-icon="list" class="icon"></span><span>Companies</span></a>
                         </li>
                         <?php if (User::isGuest()) :?>
                             <li class="menu__item menu__item--projects">
-                                <a href="/registration" class="menu__link">Registration</a>
+                                <a href="/registration" class="menu__link"><span uk-icon="chevron-right" class="icon"></span><span>Registration</span></a>
                             </li>
                             <li class="menu__item menu__item--projects">
-                                <a href="/authorization" class="menu__link">Authorisation</a>
+                                <a href="companyRegistration" class="menu__link"><span uk-icon="chevron-right" class="icon"></span><span>Company registration</span></a>
                             </li>
                             <li class="menu__item menu__item--projects">
-                                <a href="companyRegistration" class="menu__link">Company registration</a>
+                                <a href="/authorization" class="menu__link"><span uk-icon="sign-in" class="icon"></span><span>Authorisation</span></a>
                             </li>
                         <?php endif; ?>
                         <?php if (!User::isGuest()) :?>
                             <li class="menu__item menu__item--settings">
-                                <a href="/settings" class="menu__link">Settings</a>
+                                <a href="/settings" class="menu__link"><span uk-icon="settings" class="icon"></span><span>Settings</span></a>
                             </li>
                         <?php endif; ?>    
-                        <?php if (!User::isGuest()) :?>    
+                        <?php if (!User::isGuest()) :?>   
+                            <li class="menu__item menu__item--projects">
+                                <a href="/bookmarks" class="menu__link"><span uk-icon="bookmark" class="icon"></span><span>Bookmarks</span></a>
+                            </li> 
                             <li class="menu__item menu__item--exit">
-                                <a href="/logout" class="menu__link">Exit</a>
+                                <a href="/logout" class="menu__link"><span uk-icon="sign-out" class="icon"></span><span>Log Out</span></a>
                             </li>
                         <?php endif; ?>
                     </ul>

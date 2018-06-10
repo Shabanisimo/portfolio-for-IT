@@ -1,7 +1,9 @@
 <?php include ROOT.'\view\layouts\header.php';?>
 <main class="project">
     <section class="project--header">
-        <img class="project--header_img" src="../upload/projects/<?php echo $projectItem['Image'] ?>">
+        <?php if ($projectItem['Image']) :?>
+            <img class="project--header_img" src="../upload/projects/<?php echo $projectItem['Image'] ?>">
+        <?php endif; ?>
     </section>
     <section class="project--info">
         <div class="uk-flex">
@@ -10,7 +12,7 @@
         </div>
         <h1><?php echo $projectItem['Title']; ?></h1>
         <p><?php echo $projectItem['Description']; ?></p>
-        <a href="<?php echo htmlspecialchars((0 === strpos($projectItem['Link'], 'http')? $projectItem['Link']: 'http://' . $projectItem['Link'])); ?>">Project link</a>
+        <a href="<?php echo htmlspecialchars((0 === strpos($projectItem['Link'], 'http')? $projectItem['Link']: 'http://' . $projectItem['Link'])); ?>" target="_blank">Project link</a>
     </section>
     <section>
     <?php if(!User::isGuest()) : ?>

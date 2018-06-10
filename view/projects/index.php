@@ -5,9 +5,13 @@
       if ($projectList) :?>
     <div class="projects-list">
     <?php foreach ($projectList as $projectItem):?>
-        <div class="uk-card uk-card-default">
-            <div class="uk-card-media-top">
-                <img src="/upload/images/<?php echo $projectItem['Image']; ?>" alt="">
+        <div class="uk-card uk-card-default project-item">
+            <div class="uk-card-media-top project-item__photo">
+                <?php if ($projectItem['Image'] == '') :?>
+                    <img src="/upload/projects/no-project-photo.png" alt="">
+                <?php else: ?>
+                    <img src="/upload/projects/<?php echo $projectItem['Image']; ?>" alt="">
+                <?php endif; ?>
             </div>
             <div class="uk-card-body">
                 <a class="uk-card-title project-title"  data-id="<?php echo $projectItem['id']; ?>" href="/projects/<?php echo $projectItem['id']; ?>"><?php echo $projectItem['Title']; ?></a>

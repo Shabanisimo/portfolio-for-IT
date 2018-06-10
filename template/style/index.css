@@ -97,16 +97,29 @@ html{
 }
 
 
+.main-menu{
+  background-color: #F9F9FA;
+  padding: 0 !important;
+}
+
+.menu__link{
+  color: #28a5f5 !important;
+  font-size: 18px;
+  margin-left: 15px;
+}
+
 .menu__photo{
   margin-bottom: 30px;
+  margin-left: 25px;
+  margin-top: 30px;
 }
 
 .menu__item{
-  padding: 2px 3px;
+  padding: 5px 18px;
 }
 
 .menu__item:hover{
-  background-color: #F9F9FA;
+  background-color: #E9F1F7;
 }
 
 textarea {

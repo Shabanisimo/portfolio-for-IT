@@ -30,7 +30,6 @@
                     <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
                 </div>
                 <div class="uk-text-right">
-                    <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
                     <button class="uk-button uk-button-primary" type="submit" name="editProject">Save</button>                    
                 </div>    
             </form> 

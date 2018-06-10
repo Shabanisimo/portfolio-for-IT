@@ -9,11 +9,12 @@
     <link href="/template/style/reg_auth.css" rel="stylesheet" type="text/css">
     <link href="/template/style/settings.css" rel="stylesheet" type="text/css">
     <link href="/template/style/index.css" rel="stylesheet" type="text/css">
+    <link href="/template/style/vacancy.css" rel="stylesheet" type="text/css">
     <link href="/template/style/narmolizae.css" rel="stylesheet" type="text/css">
     <link href="/template/style/font.css" rel="stylesheet" type="text/css">
     <script src="/template/lib/uikit.min.js"></script>
     <script src="/template/lib/uikit-icons.min.js"></script>
-    <title></title>
+    <title><?php echo $title; ?></title>
 </head>
 <body>
     <header class="header" uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
@@ -37,6 +38,12 @@
                         <?php endif;?>
                         <li class="menu__item menu__item--projects">
                             <a href="/projects" class="menu__link">Projects</a>
+                        </li>
+                        <li class="menu__item menu__item--projects">
+                            <a href="/vacancy" class="menu__link">Vacancies</a>
+                        </li>
+                        <li class="menu__item menu__item--projects">
+                            <a href="/projects" class="menu__link">Companies</a>
                         </li>
                         <?php if (User::isGuest()) :?>
                             <li class="menu__item menu__item--projects">

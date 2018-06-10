@@ -13,14 +13,23 @@
                 <?php if ($userItem['telephone'] != '') :?>
                     <p>Mobile number:   <?php echo $userItem['telephone']; ?> </p>
                 <?php endif; ?>
-                <p>E-mail: <a href=""> <?php echo $userItem['email']; ?> </a></p>
-                <p>About: <?php echo $userItem['about']; ?></p>
+                <?php if ($userItem['email'] != '') :?>
+                    <p>E-mail: <a href=""> <?php echo $userItem['email']; ?> </a></p>
+                <?php endif; ?>
+                <?php if ($userItem['about'] != '') :?>
+                    <p>About: <?php echo $userItem['about']; ?></p>
+                <?php endif; ?>
             </div>
         </section>
         <hr class="uk-divider-icon">
         <?php if($userAccount == true) :?>
-            <?php echo '<a class="add-project_btn uk-button uk-button-primary uk-text-right uk-margin-top" href="">Add project</a>'; ?>
+            <?php if($type == 1):?>
+                <a class="add-project_btn uk-button uk-button-primary uk-text-right uk-margin-top" href="/projects/add">Add project</a>
+            <?php endif; if($type == 2) :?>
+                <a class="add-project_btn uk-button uk-button-primary uk-text-right uk-margin-top" href="/vacancy/add">Add vacancy</a>
+            <?php endif; ?>
         <?php endif; ?>
+        <?php if($type == 1): ?>
         <section class="user-profile__portfolio uk-margin-top">
             <div uk-slider>
                 <div class="uk-position-relative">
@@ -64,6 +73,37 @@
                 <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin project-list_dotnav"></ul>
             </div>
         </section>
+        <?php endif; if($type == 2) :?>
+            <section class="company-profile__vacancy uk-margin-top">
+            <?php if ($userVacancyList) :?>
+                <div class="user-vacancy-list">
+                    <?php foreach ($userVacancyList as $userVacancyItem):?>
+                        <div class="uk-card uk-card-default uk-grid-collapse vacancy-item" uk-grid>
+                            <div class="">
+                                <div class="uk-card-body">
+                                    <h3><a href="/vacancy/<?php echo $userVacancyItem['id']; ?>"><?php echo $userVacancyItem['Position']; ?></a></h3>
+                                    <p class=""><a href="/users/id<?php echo $userVacancyItem['Company_id']; ?>"><?php echo User::findUserNameById($userVacancyItem['Company_id']); ?></a></p>
+                                    <p><?php echo $userVacancyItem['About']; ?></p>
+                                    <div>З/п: 
+                                    <?php if($userVacancyItem['Min'] || $userVacancyItem['Max']) :?>
+                                        <?php if($userVacancyItem['Min']): ?>    
+                                            <span>от <?php echo $userVacancyItem['Min']; ?></span>
+                                        <?php endif ?>
+                                        <?php if($userVacancyItem['Max']): ?>    
+                                            <span>до <?php echo $userVacancyItem['Max']; ?></span>
+                                        <?php endif ?>
+                                    <?php else :?>
+                                        <span>Не указана</span>
+                                    <?php endif ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach;?>
+                </div>
+            <?php endif; ?>
+            </section>
+        <?php endif; ?>
     </main> 
 <script>
 

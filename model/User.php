@@ -87,6 +87,7 @@
                     $userItem['telephone'] = $row->telephone;
                     $userItem['about'] = $row->about;
                     $userItem['image'] = $row->image;
+                    $userItem['type'] = $row->type;
                 }
 
                 return $userItem;
@@ -183,8 +184,10 @@
                     $user['Surname'] = $row->surname;
                     $i++;
                 }
+
+                $userName = $user['Name'] . $user['Surname'];
                     
-                return $user;
+                return $userName;
                 
             }
         }
@@ -227,29 +230,54 @@
         }
 
         public static function checkUserType($id){
-
             $id = intval($id);
-
             if($id)
             {
-
                 require_once ROOT."/components/db.php";
-
                 $result = R::find("users", "id = ?", array($id));
-
                 $i = 0;
                 $type;
-
                 foreach ($result as $row){
                     $type = $row->type;
                     $i++;
                 }
-                    
-                return $type;
-                
+                return $type;   
             }
-
         }
+
+        public static function checkUserEmail($id){
+            $id = intval($id);
+            if($id)
+            {
+                require_once ROOT."/components/db.php";
+                $result = R::find("users", "id = ?", array($id));
+                $i = 0;
+                $email;
+                foreach ($result as $row){
+                    $email = $row->email;
+                    $i++;
+                }
+                return $email;   
+            }
+        }
+
+        public static function checkUserTelephone($id){
+            $id = intval($id);
+            if($id)
+            {
+                require_once ROOT."/components/db.php";
+                $result = R::find("users", "id = ?", array($id));
+                $i = 0;
+                $telephone;
+                foreach ($result as $row){
+                    $telephone = $row->telephone;
+                    $i++;
+                }
+                return $telephone;   
+            }
+        }
+
+
 
     }
 

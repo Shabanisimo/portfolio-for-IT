@@ -98,10 +98,7 @@ $('.editPassword').click(function (event){
 
 $('.deleteProject').click(function (event){
 
-
     let projectId = $(this).attr('data-id');
-
-    console.log(projectId);
 
     $.ajax({
         url: '../ajax/deleteProject.php',
@@ -110,9 +107,58 @@ $('.deleteProject').click(function (event){
         success: function(data){
             console.log(data);
             $(this).parent().parent().hide(500);
-            alert('Проект успешно удалён!');
         }
     });
     event.preventDefault();
 });
 
+
+$('.addVacancy').click(function (event){
+
+    let form = $('.addVacancy-block').serialize();
+    console.log(form);
+
+    $.ajax({
+        url: '../ajax/addVacancy.php',
+        type: 'post',
+        data: form,
+        success: function(data){
+            console.log(data);
+            alert("Ваша вакансия опубликована");
+        }
+    });
+    event.preventDefault();
+});
+
+$('.editVacancy').click(function (event){
+
+    let form = $('.editVacancy-block').serialize();
+    console.log(form);
+
+    $.ajax({
+        url: '../ajax/editVacancy.php',
+        type: 'post',
+        data: form,
+        success: function(data){
+            console.log(data);
+            alert("Ваша вакансия исправлена");
+        }
+    });
+    event.preventDefault();
+});
+
+$('.deleteVacancy').click(function (event){
+
+    let vacancyId = $(this).attr('data-id');
+
+    $.ajax({
+        url: '../ajax/deleteVacancy.php',
+        type: 'post',
+        data: {'vacancyId': vacancyId},
+        success: function(data){
+            console.log(data);
+            $(this).parent().parent().hide(500);
+        }
+    });
+    event.preventDefault();
+});

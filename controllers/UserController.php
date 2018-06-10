@@ -3,6 +3,8 @@
     class UserController{
 
         public function actionRegistration(){
+
+            $title = 'Регистрация';
             
             $login = '';
             $companyLogin = '';
@@ -87,6 +89,7 @@
 
             $login = '';
             $password = '';
+            $title = 'Авторизауия';
 
             if (isset($_POST['Login'])){ 
             
@@ -125,46 +128,22 @@
 
         public function actionView($id){
             $userItem = User::getUserItemById($id);
-            $userProjectList = User::getUserProjectsById($id);
             $userAccount = User::checkUserAccount($id);
             $type = User::checkUserType($id);
-            
-            require_once ROOT."/class/upload_files.class.php";
 
-            if (isset($_POST['addProject'])){
-                
-                $options['User_id'] = $_SESSION['user'];
-                $options['Title'] = $_POST['project_name'];
-                $options['Language'] = $_POST['project_lang'];
-                $options['Description'] = $_POST['description'];
-                $options['Date'] = date('m/d/Y', time());
-                $options['Link'] = $_POST['proj_link'];
-                
-                $errors = false;
-
-                if (!isset($options['Title']) || empty($options['Title'])){
-                    $errors[] = 'Заполните поля';
-                }
-                
-
-                if ($errors == false){
-                    $id = Project::createProject($options);
-
-                
-                    if (!empty($id)){
-                      $file =  new Upload();
-                      $file->upload_files();
-                    };
-                }
-
+            if ($type == 1){
+                $userProjectList = User::getUserProjectsById($id);
+            } else{
+                $userVacancyList = array_reverse(Vacancy::getUserVacanciesById($id));
             }
 
-            if($userItem && $type == 1)
+            if($userItem){
+                $title = $userItem['name'] .' '. $userItem['surname'];
                 require_once(ROOT.'/view/users/index.php');
-            else if($userItem && $type == 2)
-                require_once(ROOT.'/view/companies/index.php');
-            else 
+            }
+            else {
                 require_once(ROOT.'view/404/404.php');
+            }
 
             return true;
         }

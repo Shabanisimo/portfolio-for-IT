@@ -1,7 +1,9 @@
-            <div class="uk-modal-header">
-                <h2 class="uk-modal-title">Add prject</h2>
+<?php include ROOT.'\view\layouts\header.php';?>
+<div class="uk-padding">
+            <div class="">
+                <h2 class="uk-modal-title">Add project</h2>
             </div>
-            <form action="" class="add-poject__block uk-modal-body" uk-overflow-auto method="POST" enctype="multipart/form-data">
+            <form action="" class="add-poject__block" uk-overflow-auto method="POST" enctype="multipart/form-data">
                 <div class="uk-margin">
                     <label class="uk-form-label" for="input_proj-name">Project name</label>
                     <input type="text" class="uk-input" id="project_name" name="project_name">
@@ -29,8 +31,9 @@
                     </div>
                     <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
                 </div>
-                <div class="uk-modal-footer uk-text-right">
-                    <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                <div class="uk-text-right">
                     <button class="uk-button uk-button-primary" type="submit" name="addProject">Save</button>                    
                 </div>    
             </form>
+</div>
+<?php include ROOT.'\view\layouts\footer.php';?>

@@ -13,7 +13,7 @@ class Upload{
 
     }
 
-    public function upload_files($fileName){
+    public function upload_files(){
         var_dump($_FILES);
         if($_FILES["image"]["size"] >$this->_upload_max_filesize)
         {

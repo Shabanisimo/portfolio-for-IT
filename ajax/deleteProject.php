@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: User
- * Date: 15.05.2018
- * Time: 23:02
- */
-
 require_once "../config/rb-rb.php";
 R::setup('mysql:host=localhost;dbname=portfolio_db', 'root', '');
 

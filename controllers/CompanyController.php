@@ -10,21 +10,17 @@
             $total = Project::getTotalProjectsInList();
 
             $pagination = new Pagination($total, $page, Project::SHOW_BY_DEFAULT, 'page-');
+
+            $title = 'Список компаний';
             
             require_once(ROOT.'/view/projects/index.php');
 
             return true;
         }
 
-        public function actionView($id){
-            $projectItem = Company::getCompanyItemById($id);
-
-            require_once(ROOT.'/view/companies/view.php');
-
-            return true;
-        }
-
         public function actionRegistration(){
+
+            $title = 'Регистрация компании';
             
             $login = '';
             $password = '';
@@ -49,34 +45,6 @@
             }
 
             require_once(ROOT.'/view/registration/companyRegistration.php');
-
-            return true;
-        }
-
-        public function actionLogin(){
-
-            $login = '';
-            $password = '';
-
-            if (isset($_POST['companyLogin'])){
-
-                $login = $_POST['login'];
-                $password = $_POST['password'];
-
-                $companyId = Company::checkCompanyData($login, $password);
-
-                if ($companyId == false){
-                    $errors = 'Неправильный логин или пароль!';
-                }else{
-                    Company::authorisation($companyId);
-                    $errors = '';
-
-                    header("Location: /company/id".$companyId);
-                }
-
-            }
-
-            require_once(ROOT.'/view/authorization/companyAuthorization.php');
 
             return true;
         }

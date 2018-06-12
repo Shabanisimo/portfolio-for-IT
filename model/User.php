@@ -277,6 +277,26 @@
             }
         }
 
+        public static function changeUserPhoto($photo){
+            if($photo)
+            {
+                require_once ROOT."/components/db.php";
+                $result = R::load("users", $_SESSION['user']);
+                $result->image = $photo;
+                R::store($result);   
+            }
+        }
+
+        public static function isAdmin(){
+
+                require_once ROOT."/components/db.php";
+                $result = R::find("admin","user_id = ?", array($_SESSION['user']));
+                if($result)
+                    return false;
+                return true;  
+        }
+
+
 
 
     }

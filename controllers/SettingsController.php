@@ -1,6 +1,32 @@
 <?php
 
     class SettingsController{
+
+        private $_upload_max_filesize = 1024*10*1024;
+        private $_files_directories = "/upload/images/";
+        public function __construct($directories = null, $size = null)
+        {
+            if ($size!=null)
+                $this->_upload_max_filesize = $size;
+            if ($directories!=null)
+                $this->_files_directories = $directories;
+    
+        }
+    
+        public function upload_files(){
+            if($_FILES["image"]["size"] >$this->_upload_max_filesize)
+            {
+                echo  ("Размер файла превышает $this->_upload_max_filesize байтов");
+            }
+            // Проверяем загружен ли файл
+            if(isset($_FILES['image']['tmp_name']))
+            {
+                move_uploaded_file($_FILES["image"]["tmp_name"],$_SERVER['DOCUMENT_ROOT'].$this->_files_directories.$_FILES["image"]["name"]);
+            } else {
+                echo  ("Файл не был загружен");
+            }
+    
+        }
         
         public function actionEdit(){
 
@@ -16,9 +42,16 @@
             $telephone = $user['telephone'];
             $about = $user['about'];
 
-                $projectList = User::getUserProjectsById($userId);
-                $vacancyList = Vacancy::getUserVacanciesById($userId);
-            
+            $projectList = User::getUserProjectsById($userId);
+            $vacancyList = Vacancy::getUserVacanciesById($userId);
+
+
+            if (isset($_POST['editPhoto'])){
+                $options['Image'] = $_FILES['image']['name'];
+                $file =  new SettingsController();
+                $file->upload_files($options['Image']);
+                User::changeUserPhoto($options['Image']);
+            }
 
             require_once(ROOT.'/view/settings/settings.php');
             

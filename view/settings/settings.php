@@ -15,17 +15,31 @@
                 <input class="uk-input uk-margin-bottom telephone settings_item" name="telephone" id="telephone" value="<?php echo $telephone; ?>"></input>
                 <label class="uk-lable" for="about">О нас</label>
                 <textarea class="uk-textarea about settings_item" name="about" id="about"><?php echo $about; ?></textarea>
-                <button class="uk-button uk-button-primary uk-margin-top edit" type="submit" name="edit">Редактировать</button>
+                <button class="uk-button uk-button-primary uk-margin-top edit" type="submit" name="edit">Сохранить</button>
             </form>
             <div class="settings">
                 <form class="uk-margin-top uk-margin-left settings" method="POST" cation="">
                 <h2>Изменение пароля</h2>
                     <label class="uk-lable" for="newpass">Новый пароль</label>
                     <input type="password" minlength="8" required class="uk-input uk-margin-bottom password settings_item" name="newpass" id="password"></input>
-                    <button class="uk-button uk-button-primary editPassword" type="submit" name="editpass">Редактировать</button>
+                    <button class="uk-button uk-button-primary editPassword" type="submit" name="editpass">Сохранить</button>
                 </form >
+                <form method="POST" class=" uk-margin-small-left" enctype="multipart/form-data">
+                <div class="uk-margin js-upload uk-width-1-1" uk-form-custom>
+                    <div class="js-upload uk-placeholder uk-text-center">
+                        <span uk-icon="icon: cloud-upload"></span>
+                        <span class="uk-text-middle">Загрузите фотографию профиля</span>
+                        <div uk-form-custom>
+                            <input type="file" name="image">
+                            <span class="uk-link">выбрать</span>
+                        </div>
+                    </div>
+                    <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
+                </div>
+                    <button class="uk-button uk-button-primary" type="submit" name="editPhoto">Сохранить</button>                    
+                </form>
                 <?php if(User::checkUserType($_SESSION['user']) == 1) :?>
-                <div class="setting__project-list uk-margin-small-left uk-margin-large-top">
+                <div class="setting__project-list uk-margin-small-left   uk-margin-large-top">
                 <h2>Список проектов пользователей</h2>
                     <table class="uk-table uk-table-hover uk-table-divider">
                         <thead>

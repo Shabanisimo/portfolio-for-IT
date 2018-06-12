@@ -12,7 +12,9 @@
         </div>
         <h1><?php echo $projectItem['Title']; ?></h1>
         <p><?php echo $projectItem['Description']; ?></p>
-        <a href="<?php echo htmlspecialchars((0 === strpos($projectItem['Link'], 'http')? $projectItem['Link']: 'http://' . $projectItem['Link'])); ?>" target="_blank">Project link</a>
+        <?php if ($projectItem['Link'] == '') :?>
+            <a href="<?php echo htmlspecialchars((0 === strpos($projectItem['Link'], 'http')? $projectItem['Link']: 'http://' . $projectItem['Link'])); ?>" target="_blank">Project link</a>
+        <?php endif; ?>
     </section>
     <section>
     <?php if(!User::isGuest()) : ?>

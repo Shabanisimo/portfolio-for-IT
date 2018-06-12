@@ -4,7 +4,7 @@
         'users/id([0-9]+)' => 'user/view/$1/$2',
         'vacancy/([0-9]+)' => 'vacancy/view/$1/$2',
         'projects/([0-9]+)' => 'project/view/$1/$2',
-        'backend' => 'admin/login',
+        'backend' => 'admin/index',
 
         'editvacancies/([0-9]+)' => 'settings/editVacancy/$1/$2',
         'editproject/([0-9]+)' => 'settings/editProject/$1',
@@ -25,9 +25,6 @@
         'settings' => 'settings/edit',
         'projects' => 'project/list',
         'vacancy' => 'vacancy/list',
-
-        'backend/users' => 'admin/list',
-        'backend/project' => 'admin/list',
 
         '' => 'project/list',
         

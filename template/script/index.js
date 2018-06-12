@@ -99,6 +99,7 @@ $('.editPassword').click(function (event){
 $('.deleteProject').click(function (event){
 
     let projectId = $(this).attr('data-id');
+    $(this).parent().parent().hide(500);
 
     $.ajax({
         url: '../ajax/deleteProject.php',
@@ -155,6 +156,21 @@ $('.deleteVacancy').click(function (event){
         url: '../ajax/deleteVacancy.php',
         type: 'post',
         data: {'vacancyId': vacancyId},
+        success: function(data){
+            console.log(data);
+            $(this).parent().parent().hide(500);
+        }
+    });
+    event.preventDefault();
+});
+
+$('.adminButton').click(function (event){
+    let id = $(this).attr('data-id');
+
+    $.ajax({
+        url: '../ajax/getUserAdmin.php',
+        type: 'post',
+        data: {'id': id},
         success: function(data){
             console.log(data);
             $(this).parent().parent().hide(500);

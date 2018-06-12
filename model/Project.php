@@ -156,6 +156,7 @@
             $project->description = $options['Description'];
             $project->date = $options['Date'];
             $project->link = $options['Link'];
+            $project->image = $options['Image'];
 
             R::store($project);
 

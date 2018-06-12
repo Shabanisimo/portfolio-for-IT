@@ -31,7 +31,7 @@
                         <?php if(User::getUserPhoto($_SESSION['user']) == ''): ?>
                             <img src="/template/img/photo.svg" alt="Аватар" class="menu__img">
                         <?php else :?>  
-                            <img src="/template/img/<?php echo User::getUserPhoto($_SESSION['user']); ?>" alt="Аватар" class="menu__img">
+                            <img src="/upload/images/<?php echo User::getUserPhoto($_SESSION['user']); ?>" alt="Аватар" class="menu__img">
                         <?php endif; ?>
                     </div>
                     <div class="menu__title"></div>
@@ -42,6 +42,13 @@
                                 <a href="/users/id<?php echo $_SESSION['user']; ?>" class="menu__link"><span uk-icon="user" class="icon"></span><span>Личный кабинет</span></a>
                             </li>
                         <?php endif;?>
+                        <?php if (!User::isGuest()) : ?>
+                            <?php if (!User::isAdmin()) : ?>
+                            <li class="menu__item menu__item--mainpage">
+                                <a href="/backend" class="menu__link"><span uk-icon="user" class="icon"></span><span>Панель администратора</span></a>
+                            </li>
+                            <?php endif; ?>
+                        <?php endif; ?>
                         <li class="menu__item menu__item--projects">
                             <a href="/projects" class="menu__link"><span uk-icon="list" class="icon"></span><span>Список проектов</span></a>
                         </li>

@@ -168,9 +168,25 @@ $('.adminButton').click(function (event){
     let id = $(this).attr('data-id');
 
     $.ajax({
-        url: '../ajax/getUserAdmin.php',
+        url: '../ajax/getUserAdmin  .php',
         type: 'post',
         data: {'id': id},
+        success: function(data){
+            console.log(data);
+            $(this).parent().parent().hide(500);
+        }
+    });
+    event.preventDefault();
+});
+
+$('.deleteUser').click(function (event){
+
+    let userId = $(this).attr('data-id');
+
+    $.ajax({
+        url: '../ajax/deleteUser.php',
+        type: 'post',
+        data: {'userId': userId},
         success: function(data){
             console.log(data);
             $(this).parent().parent().hide(500);

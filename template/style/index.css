@@ -33,16 +33,21 @@ html{
 
 .user-profile__photo-block{
   width: 200px;
+  margin-right: 20px;
+}
+
+.user-profile__photo-block div{
+  width: 200px;
   height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .user-profile__photo{
     background-color:#E9F1F7;
-    padding: 10px;   
     width: 100%;
     height: 100%;
     object-fit: cover; 
-    border-radius: 50%;
 }
 
 .user-profile__info_photo img{
@@ -52,6 +57,7 @@ html{
 
 .user-profile__info_data{
     padding: 0 10px;
+    max-width: 600px;
 }
 
 .user-profile__info_data-name{

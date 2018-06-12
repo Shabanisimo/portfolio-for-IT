@@ -3,9 +3,13 @@
         <section class="user-profile__info">
             <div class="user-profile__photo-block">
             <?php if ($userItem['image']): ?>
+            <div>
                 <img src="../upload/images/<?php echo $userItem['image']; ?>" class="user-profile__photo">
+            </div>
             <?php else: ?>
+            <div>
                 <img src="../upload/images/avatar_img.png" class="user-profile__photo">
+            </div>
             <?php endif; ?>
             </div>
             <div class="user-profile__info_data">
@@ -17,7 +21,7 @@
                     <p>E-mail: <a href=""> <?php echo $userItem['email']; ?> </a></p>
                 <?php endif; ?>
                 <?php if ($userItem['about'] != '') :?>
-                    <p>Обо мне: <?php echo $userItem['about']; ?></p>
+                    <p>Больше информации: <?php echo $userItem['about']; ?></p>
                 <?php endif; ?>
             </div>
         </section>

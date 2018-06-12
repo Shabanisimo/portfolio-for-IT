@@ -6,15 +6,18 @@
     if(!isset($_SESSION))
         session_start();
     
-    $date = date('m/d/Y', time());
+    $errors = false;
 
-    $comment = R::dispense("comments");
-
-    $comment->project_id = $_POST['id'];
-    $comment->user_id = $_SESSION['user'];
-    $comment->comment = $_POST['comment'];
-    $comment->date = $date;
-    
-    R::store($comment);
-
+    if (strlen($_POST['comment']) < 1)
+        $errors = true;
+        
+    if ($errors == false){
+        $date = date('m/d/Y', time());
+        $comment = R::dispense("comments");
+        $comment->project_id = $_POST['id'];
+        $comment->user_id = $_SESSION['user'];
+        $comment->comment = $_POST['comment'];
+        $comment->date = $date;
+        R::store($comment);
+    }
 ?>

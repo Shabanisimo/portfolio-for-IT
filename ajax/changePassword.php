@@ -5,13 +5,12 @@
         
     if(!isset($_SESSION))
         session_start();
-        
-    $password = md5($_POST['password']);
 
-    $result  = R::load('users', $_SESSION['user']);
-
-    $result->password = $password;
-
-    R::store($result);
+    if (strlen($_POST['password']) >= 8) {   
+        $password = md5($_POST['password']);
+        $result  = R::load('users', $_SESSION['user']);
+        $result->password = $password;
+        R::store($result);
+    }
 
 ?>

@@ -2,31 +2,31 @@
     <main class="settings-container">
         <section class="settings-block">
             <form class="uk-margin-left settings" method="POST" action="">
-            <h2>Change info</h2>
-                <label class="uk-lable" for="name">Name</label>
-                <input class="uk-input uk-margin-bottom name settings_item" name="name" id="name" value="<?php echo $name;  ?>"></input>
+            <h2>Изменение личной информации</h2>
+                <label class="uk-lable" for="name">Имя</label>
+                <input class="uk-input uk-margin-bottom name settings_item" minlength="1" required  name="name" id="name" value="<?php echo $name;  ?>"></input>
                 <?php if(User::checkUserType($_SESSION['user']) == 1) :?>
-                    <label class="uk-lable" for="surname">Surname</label>
-                    <input class="uk-input uk-margin-bottom surname settings_item" name="surname" id="surname" value="<?php echo $surname;  ?>"></input>
+                    <label class="uk-lable" for="surname">Фамилия</label>
+                    <input class="uk-input uk-margin-bottom surname settings_item" minlength="1" required  name="surname" id="surname" value="<?php echo $surname;  ?>"></input>
                 <?php endif; ?>
                 <label class="uk-lable" for="email">Email</label>
-                <input class="uk-input uk-margin-bottom email settings_item" name="email" id="email" value="<?php echo $email;  ?>"></input>
-                <label class="uk-lable" for="telephone">Telephone</label>
+                <input type="email" name="email" id="email" required  class="uk-input uk-margin-bottom email settings_item" value="<?php echo $email;  ?>"></input>
+                <label class="uk-lable" for="telephone">Телефон</label>
                 <input class="uk-input uk-margin-bottom telephone settings_item" name="telephone" id="telephone" value="<?php echo $telephone; ?>"></input>
-                <label class="uk-lable" for="about">About me</label>
-                <textarea class="uk-input about settings_item" name="about" id="about"><?php echo $about; ?></textarea>
-                <button class="uk-button uk-button-primary uk-margin-top edit" type="submit" name="edit">Send</button>
+                <label class="uk-lable" for="about">О нас</label>
+                <textarea class="uk-textarea about settings_item" name="about" id="about"><?php echo $about; ?></textarea>
+                <button class="uk-button uk-button-primary uk-margin-top edit" type="submit" name="edit">Редактировать</button>
             </form>
             <div class="settings">
                 <form class="uk-margin-top uk-margin-left settings" method="POST" cation="">
-                <h2>Change password</h2>
-                    <label class="uk-lable" for="newpass">Change password</label>
-                    <input type="password" class="uk-input uk-margin-bottom password settings_item" name="newpass" id="password"></input>
-                    <button class="uk-button uk-button-primary editPassword" type="submit" name="editpass">Send</button>
+                <h2>Изменение пароля</h2>
+                    <label class="uk-lable" for="newpass">Новый пароль</label>
+                    <input type="password" minlength="8" required class="uk-input uk-margin-bottom password settings_item" name="newpass" id="password"></input>
+                    <button class="uk-button uk-button-primary editPassword" type="submit" name="editpass">Редактировать</button>
                 </form >
                 <?php if(User::checkUserType($_SESSION['user']) == 1) :?>
                 <div class="setting__project-list uk-margin-small-left uk-margin-large-top">
-                <h2>User project list</h2>
+                <h2>Список проектов пользователей</h2>
                     <table class="uk-table uk-table-hover uk-table-divider">
                         <thead>
                             <tr>
@@ -38,13 +38,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($projectList as $vacancyItem): ?>
-                            <tr data-id="<?php echo $vacancyItem['Id'] ?>">
-                                <td><?php echo $vacancyItem['Id'] ?></td>
-                                <td><a href="/projects/<?php echo $vacancyItem['Id'] ?>"><?php echo $vacancyItem['Title'] ?></a></td>
-                                <td><?php echo $vacancyItem['Date'] ?></td>
-                                <td><a uk-icon="file-edit" data-id="<?php echo $vacancyItem['Id'] ?>" href="/editproject/<?php echo $vacancyItem['Id'] ?>"></a></td>
-                                <td><a uk-icon="trash" class="deleteProject" data-id="<?php echo $vacancyItem['Id'] ?>"></a></td>
+                            <?php foreach($projectList as $projectItem): ?>
+                            <tr data-id="<?php echo $projectItem['Id'] ?>">
+                                <td><?php echo $projectItem['Id'] ?></td>
+                                <td><a href="/projects/<?php echo $projectItem['Id'] ?>"><?php echo $projectItem['Title'] ?></a></td>
+                                <td><?php echo $projectItem['Date'] ?></td>
+                                <td><a uk-icon="file-edit" data-id="<?php echo $projectItem['Id'] ?>" href="/editproject/<?php echo $projectItem['Id'] ?>"></a></td>
+                                <td><a uk-icon="trash" class="deleteProject" data-id="<?php echo $projectItem['Id'] ?>"></a></td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -52,7 +52,7 @@
                 </div>
                 <?php else: ?>
                 <div class="setting__project-list uk-margin-small-left uk-margin-large-top">
-                <h2>Company vacancy list</h2>
+                <h2>Список вакансий компании</h2>
                     <table class="uk-table uk-table-hover uk-table-divider">
                         <thead>
                             <tr>

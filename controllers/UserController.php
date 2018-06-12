@@ -58,30 +58,6 @@
                 
             }
 
-            if (isset($_POST['companysignup'])){
-                $companyLogin = $_POST['companyLogin'];
-                $companyPassword = $_POST['companyPassword'];
-                $website = $_POST['website'];
-                $telephone = $_POST['telephone'];
-
-                $errors = false;
-
-                if (!User::checkLogin($login)){
-                    $errors = 'Логин должен быть длинее 4 символов';
-                }
-                if (!User::checkPassword($password)){
-                    $errors = 'Пароль должен быть длинее 4 символов';
-                }
-                /*if (isset($telephone)){
-                    echo '<br>telephone: ok';
-                }
-                else{ echo '<br>Логин должен быть длинее 4 символов' }*/
-
-                if ($errors == false){
-                    $result = User::companyRegistration($companyLogin, $companyPassword, $title, $website, $telephone);
-                }
-            }
-
             require_once(ROOT.'/view/registration/registration.php');
 
             return true;

@@ -48,7 +48,7 @@
                 
                 $errors = false;
 
-                if (!isset($options['Title']) || empty($options['Title'])){
+                if (strlen($options['Title']) < 1 || strlen($options['Language']) < 0 ){
                     $errors[] = 'Заполните поля';
                 }
                 

@@ -11,22 +11,22 @@
             <div class="user-profile__info_data">
                 <h2 class="user-profile__info_data-name"> <?php echo $userItem['name'],' ',$userItem['surname']; ?> </h2>
                 <?php if ($userItem['telephone'] != '') :?>
-                    <p>Mobile number:   <?php echo $userItem['telephone']; ?> </p>
+                    <p>Телефон:   <?php echo $userItem['telephone']; ?> </p>
                 <?php endif; ?>
                 <?php if ($userItem['email'] != '') :?>
                     <p>E-mail: <a href=""> <?php echo $userItem['email']; ?> </a></p>
                 <?php endif; ?>
                 <?php if ($userItem['about'] != '') :?>
-                    <p>About: <?php echo $userItem['about']; ?></p>
+                    <p>Обо мне: <?php echo $userItem['about']; ?></p>
                 <?php endif; ?>
             </div>
         </section>
         <hr class="uk-divider-icon">
         <?php if($userAccount == true) :?>
             <?php if($type == 1):?>
-                <a class="add-project_btn uk-button uk-button-primary uk-text-right uk-margin-top" href="/projects/add">Add project</a>
+                <a class="add-project_btn uk-button uk-button-primary uk-text-right uk-margin-top" href="/projects/add">Добавить проект</a>
             <?php endif; if($type == 2) :?>
-                <a class="add-project_btn uk-button uk-button-primary uk-text-right uk-margin-top" href="/vacancy/add">Add vacancy</a>
+                <a class="add-project_btn uk-button uk-button-primary uk-text-right uk-margin-top" href="/vacancy/add">Добавить вакансию</a>
             <?php endif; ?>
         <?php endif; ?>
         <?php if($type == 1): ?>

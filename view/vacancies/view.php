@@ -31,7 +31,6 @@
                         var marker = new google.maps.Marker({
                             position: uluru,
                             map: map, 
-                            draggable: true,  
                             title: 'Hello World!'
                         });
 
@@ -43,6 +42,7 @@
                 </script>  
             </div>
         </div>
+        <?php if(!User::isGuest()) :?>
         <?php if(User::checkUserType($_SESSION['user']) == 1): ?>
         <div class="vacancy-send-form uk-margin-left">
             <?php if(!User::isGuest()) : ?>
@@ -60,6 +60,7 @@
                 </form>
             <?php endif; ?>
         </div>
+        <?php endif; ?>
         <?php endif; ?>
     </section>
 </main>

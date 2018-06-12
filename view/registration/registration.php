@@ -8,35 +8,35 @@
                 </ul>
             <?php endif; ?>
                     <form class="reg-auth-block" action="#" method="POST">
-                        <h2 class="reg-auth__title">Registartion</h2>
+                        <h2 class="reg-auth__title">Регистрация</h2>
                         <ul class="reg-auth__list">
                             <li class="reg-auth__item">
-                                <label>Login</label>
-                                <input type="text" name="login" id="login" class="uk-input" value="<?php echo $login; ?>">
+                                <label>Логин</label>
+                                <input type="text" name="login" id="login" minlength="4" required class="uk-input" value="<?php echo $login; ?>">
                             </li>
                             <li class="reg-auth__item">
-                                <label>Password</label>
-                                <input type="password" name="password" id="password" class="uk-input" value="<?php echo $password; ?>">
+                                <label>Пароль</label>
+                                <input type="password" name="password" minlength="8" required id="password" class="uk-input" value="<?php echo $password; ?>">
                             </li>
                             <li class="reg-auth__item">
-                                <label>Name</label>
-                                <input type="text" name="name" id="name" class="uk-input" value="<?php echo $name; ?>">
+                                <label>Имя</label>
+                                <input type="text" name="name" id="name" minlength="1" required class="uk-input" value="<?php echo $name; ?>">
                             </li>
                             <li class="reg-auth__item">
-                                <label>Surname</label>
-                                <input type="text" name="surname" id="surname" class="uk-input" value="<?php echo $surname; ?>">
+                                <label>Фамилия</label>
+                                <input type="text" name="surname" id="surname" minlength="1" required class="uk-input" value="<?php echo $surname; ?>">
                             </li>
                             <li class="reg-auth__item">
                                 <label>Email</label>
-                                <input type="email" name="email" id="email" class="uk-input" value="<?php echo $email; ?>">
+                                <input type="email" name="email" id="email" required class="uk-input" value="<?php echo $email; ?>">
                             </li>
                             <li class="reg-auth__item">
-                                <label>Telephone</label>
+                                <label>Номер телефона</label>
                                 <input type="text" name="telephone" id="telephone" class="uk-input" value="<?php echo $telephone; ?>">
                             </li>
                             <li class="reg-auth__item">
                                 <button type="submit" class="uk-button uk-button-primary reg-auth__button" name="signup">
-                                    Registration
+                                    Регистрация
                                 </button>
                             </li>
                         </ul>

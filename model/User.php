@@ -23,7 +23,7 @@
         }
 
         public static function checkLogin($login){
-            if(strlen($login) >= 4){
+            if(strlen($login) >= 1){
                 return true;
             }
             return false;
@@ -37,14 +37,14 @@
         }
 
         public static function checkName($name){
-            if(strlen($name) >= 2){
+            if(strlen($name) >= 1){
                 return true;
             }
             return false;
         }
 
         public static function checkSurname($surname){
-            if(strlen($surname) >= 2){
+            if(strlen($surname) >= 1){
                 return true;
             }
             return false;

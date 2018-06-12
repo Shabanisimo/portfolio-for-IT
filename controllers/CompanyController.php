@@ -2,10 +2,10 @@
 
     class CompanyController{
 
-        public function actionList($page = 1){
+        public function actionList(){
 
             $projectList = array();
-            $projectList = Project::getProjectListByPage($page);
+            $projectList = Project::getCompanyListByPage();
 
             $total = Project::getTotalProjectsInList();
 
@@ -38,9 +38,26 @@
 
                 $errors = false;
 
+                if (!User::checkLogin($login)){
+                    $errors = 'Логин должен быть длинее 4 символов';
+                }
+                if (!User::checkPassword($password)){
+                    $errors = 'Пароль должен быть длинее 4 символов';
+                }
+                if (!User::checkName($title)){
+                    $errors = 'Имя должен быть длинее 2 символов';
+                }
+                if (!User::checkEmail($email)){
+                    $errors = 'Неправильный Email';
+                }else{
+                    if (User::checkEmailExists($email)){
+                        $errors = 'Email уже занят';
+                    }
+                }
+
                 if ($errors == false){
                     $result = Company::registration($login, $password, $title, $email, $telephone);
-                    header("Location: /companyAuthorization");
+                    header("Location: /authorizatio");
                 }
             }
 

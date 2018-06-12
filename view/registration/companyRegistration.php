@@ -8,31 +8,31 @@
                 </ul>
             <?php endif; ?>
                     <form class="reg-auth-block" action="#" method="POST">
-                        <h2 class="reg-auth__title">Company registartion</h2>
+                        <h2 class="reg-auth__title">Регистрация компании</h2>
                         <ul class="reg-auth__list">
                             <li class="reg-auth__item">
-                                <label>Login</label>
-                                <input type="text" name="login" id="login" class="uk-input" value="<?php echo $login; ?>">
+                                <label>Логин</label>
+                                <input type="text" name="login"  minlength="4" required id="login" class="uk-input" value="<?php echo $login; ?>">
                             </li>
                             <li class="reg-auth__item">
-                                <label>Password</label>
-                                <input type="password" name="password" id="password" class="uk-input" value="<?php echo $password; ?>">
+                                <label>Пароль</label>
+                                <input type="password" name="password" autocomplete="login" minlength="8" required id="password" class="uk-input" value="<?php echo $password; ?>">
                             </li>
                             <li class="reg-auth__item">
-                                <label>Name</label>
-                                <input type="text" name="title" id="title" class="uk-input" value="<?php echo $title; ?>">
+                                <label>Наименование</label>
+                                <input type="text" name="title" id="title"  minlength="1" required class="uk-input" value="<?php echo $title; ?>">
                             </li>
                             <li class="reg-auth__item">
                                 <label>Email</label>
-                                <input type="text" name="email" id="email" class="uk-input" value="<?php echo $website; ?>">
+                                <input type="email" name="email" required id="email" class="uk-input" value="<?php echo $website; ?>">
                             </li>
                             <li class="reg-auth__item">
-                                <label>Telephone</label>
+                                <label>Номер телефона</label>
                                 <input type="text" name="telephone" id="telephone" class="uk-input" value="<?php echo $telephone; ?>">
                             </li>
                             <li class="reg-auth__item">
                                 <button type="submit" class="uk-button uk-button-primary reg-auth__button" name="companySignup">
-                                    Registration
+                                    Регистрация
                                 </button>
                             </li>
                         </ul>

@@ -5,7 +5,7 @@
       if ($projectList) :?>
     <div class="projects-list">
     <?php foreach ($projectList as $projectItem):?>
-        <div class="uk-card uk-card-default project-item">
+        <div class="uk-card uk-card-default project-item"  uk-scrollspy="cls: uk-animation-slide-right; repeat: true">
             <div class="uk-card-media-top project-item__photo">
                 <?php if ($projectItem['Image'] == '') :?>
                     <img src="/upload/projects/no-project-photo.png" alt="">

@@ -1,8 +1,7 @@
 <?php include ROOT.'\view\layouts\header.php';?>
 <main>
     <h1 class="uk-margin-left">Список вакансий</h1>
-    <?php
-    if ($vacancyList) :?>
+    <?php if ($vacancyList) :?>
     <div class="vacancy-list">
     <?php foreach ($vacancyList as $vacancyItem):?>
         <div class="uk-card uk-card-default uk-grid-collapse vacancy-item" uk-grid>

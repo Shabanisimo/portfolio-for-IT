@@ -17,7 +17,7 @@
     <section>
     <?php if(!User::isGuest()) : ?>
         <form action="/projects/<?php echo $projectItem['id']?>" method="POST" class="comment-block">
-            <textarea class="comment-text" name="comment-text"></textarea>
+            <textarea class="comment-text uk-textarea"  minlength="1" required name="comment-text"></textarea>
             <button class="uk-button uk-button-primary comment" type="submit" name="comment" data-project-id="<?php echo $projectItem['id'] ?>">Comment</button>
         </form>
     <?php endif; ?>

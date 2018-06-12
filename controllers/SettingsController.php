@@ -16,11 +16,8 @@
             $telephone = $user['telephone'];
             $about = $user['about'];
 
-            if (User::checkUserType($_SESSION['user'] == 1)){
                 $projectList = User::getUserProjectsById($userId);
-            }else{
                 $vacancyList = Vacancy::getUserVacanciesById($userId);
-            }
             
 
             require_once(ROOT.'/view/settings/settings.php');
@@ -49,6 +46,10 @@
 
                 $errors = false;
 
+                if (strlen($options['Title']) < 1 || strlen($options['Language']) < 0 ){
+                    $errors[] = 'Заполните поля';
+                }
+
                 if ($errors == false){
                     $id = Project::updateProject($options);
 
@@ -72,31 +73,6 @@
             $title = 'Редактирование вакансии';
 
             $vacancyItem = Vacancy::getVacancyItemById($id);
-
-            if (isset($_POST['editProject'])){
-
-                $options['id'] = $id;
-                $options['User_id'] = $_SESSION['user'];
-                $options['Title'] = $_POST['project_name'];
-                $options['Language'] = $_POST['project_lang'];
-                $options['Description'] = $_POST['description'];
-                $options['Date'] = date('m/d/Y', time());
-                $options['Link'] = $_POST['proj_link'];
-                $options['Image'] = $_FILES['image']['name'];
-
-                $errors = false;
-
-                if ($errors == false){
-                    $id = Project::updateProject($options);
-
-                
-                    if (!empty($id)){
-                      $file =  new Upload();
-                      $file->upload_files($options['Image']);
-                    };
-                }
-
-            }
 
             require_once(ROOT.'/view/settings/editVacancy.php');
 
